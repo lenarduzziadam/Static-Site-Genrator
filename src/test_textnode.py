@@ -140,7 +140,49 @@ class TestTextNode(unittest.TestCase):
         self.assertEqual(new_nodes[1].text_type, TextType.CODE)
         
     
+    def test_extract_markdown_images(self):
+        matches = extract_markdown_images(
+            "This is text with an ![image](https://i.imgur.com/zjjcJKZ.png)"
+        )
+        self.assertListEqual([("image", "https://i.imgur.com/zjjcJKZ.png")], matches)
     
+    def test_extract_markdown_images_multiple(self):
+        matches = extract_markdown_images(
+            "Here are multiple images: ![first](https://example.com/1.jpg) and ![second](https://example.com/2.jpg)"
+        )
+        self.assertListEqual([
+            ("first", "https://example.com/1.jpg"),
+            ("second", "https://example.com/2.jpg")
+        ], matches)
+
+    def test_extract_markdown_links(self):
+        matches = extract_markdown_links(
+            "Check out [Boot.dev](https://boot.dev) for coding courses"
+        )
+        self.assertListEqual([("Boot.dev", "https://boot.dev")], matches)
+    
+    def test_extract_markdown_links_multiple(self):
+        matches = extract_markdown_links(
+            "Here are multiple links: [first link](https://example.com) and [second link](https://another-example.com)"
+        )
+        self.assertListEqual([
+            ("first link", "https://example.com"),
+            ("second link", "https://another-example.com")
+        ], matches)
+
+    def test_extract_markdown_links_with_images(self):
+        # Test that the function correctly distinguishes between images and links
+        matches = extract_markdown_links(
+            "This has both a ![image](https://image.com) and a [link](https://link.com)"
+        )
+        self.assertListEqual([("link", "https://link.com")], matches)
+
+    def test_extract_markdown_links_special_characters(self):
+        # Test links with special characters in the text portion
+        matches = extract_markdown_links(
+            "Link with [special characters: @#$%](https://special.com)"
+        )
+        self.assertListEqual([("special characters: @#$%", "https://special.com")], matches)
         
 if __name__ == "__main__":
     unittest.main()

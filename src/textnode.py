@@ -96,7 +96,7 @@ def split_nodes_delimiter(old_nodes, delimiter, text_type):
     return result
 
 
-#classless function again, regec guide below for referece:
+#classless function again, regex guide below for referece:
 
 # Regex Quick Reference:
 # .        - any character except newline
@@ -129,3 +129,31 @@ def extract_markdown_images(text):
     # \)           - literal closing parenthesis (escaped with \)
     matches = re.findall(r"!\[([^\[\]]*)\]\(([^\(\)]*)\)", text)
     return matches
+
+def extract_markdown_links(text):
+    matches = re.findall(r"(?<!!)\[([^\[\]]*)\]\(([^\(\)]*)\)", text)
+    return matches
+
+def split_nodes_image(old_nodes):
+    result = []
+    #grabs nodes within old_nodes list one by one
+    for node in old_nodes:
+        #chekcs if nodes text_type is not TEXT if so will simply append the result and continue to next iteration (node)
+        if node.text_type != TextType.IMAGE:
+            result.append(node)
+            continue 
+    
+    #TODO: Implement rest of code
+    return result
+
+def split_nodes_link(old_nodes):
+    result = []
+    #grabs nodes within old_nodes list one by one
+    for node in old_nodes:
+        #chekcs if nodes text_type is not TEXT if so will simply append the result and continue to next iteration (node)
+        if node.text_type != TextType.LINK:
+            result.append(node)
+            continue 
+    
+    #TODO: Implement rest of code
+    return result
