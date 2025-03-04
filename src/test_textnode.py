@@ -183,6 +183,308 @@ class TestTextNode(unittest.TestCase):
             "Link with [special characters: @#$%](https://special.com)"
         )
         self.assertListEqual([("special characters: @#$%", "https://special.com")], matches)
+    
+    def test_split_images(self):
+        node = TextNode(
+            "This is text with an ![image](https://i.imgur.com/zjjcJKZ.png) and another ![second image](https://i.imgur.com/3elNhQu.png)",
+            TextType.TEXT,
+        )
+        new_nodes = split_nodes_image([node])
+        self.assertListEqual(
+            [
+                TextNode("This is text with an ", TextType.TEXT),
+                TextNode("image", TextType.IMAGE, "https://i.imgur.com/zjjcJKZ.png"),
+                TextNode(" and another ", TextType.TEXT),
+                TextNode(
+                    "second image", TextType.IMAGE, "https://i.imgur.com/3elNhQu.png"
+                ),
+            ],
+            new_nodes,
+        )
         
+    def test_split_images_basic(self):
+        # Test a single image in the middle of text
+        node = TextNode(
+            "This is text with an ![image](https://example.com/img.png) in it",
+            TextType.TEXT,
+        )
+        new_nodes = split_nodes_image([node])
+        self.assertListEqual(
+            [
+                TextNode("This is text with an ", TextType.TEXT),
+                TextNode("image", TextType.IMAGE, "https://example.com/img.png"),
+                TextNode(" in it", TextType.TEXT),
+            ],
+            new_nodes,
+        )
+
+    def test_split_images_none(self):
+        # Test text with no images
+        node = TextNode("This is text with no images", TextType.TEXT)
+        new_nodes = split_nodes_image([node])
+        self.assertListEqual([node], new_nodes)
+
+    def test_split_images_non_text_node(self):
+        # Test that non-TEXT nodes are left unchanged
+        node = TextNode("existing image", TextType.IMAGE, "https://example.com/img.png")
+        new_nodes = split_nodes_image([node])
+        self.assertListEqual([node], new_nodes)
+    
+    def test_split_images_multiple(self):
+        # Test text with multiple images
+        node = TextNode(
+            "Here's ![image1](https://example.com/img1.png) and ![image2](https://example.com/img2.png) for testing",
+            TextType.TEXT,
+        )
+        new_nodes = split_nodes_image([node])
+        self.assertListEqual(
+            [
+                TextNode("Here's ", TextType.TEXT),
+                TextNode("image1", TextType.IMAGE, "https://example.com/img1.png"),
+                TextNode(" and ", TextType.TEXT),
+                TextNode("image2", TextType.IMAGE, "https://example.com/img2.png"),
+                TextNode(" for testing", TextType.TEXT),
+            ],
+            new_nodes,
+        )
+
+    def test_split_images_at_beginning(self):
+        # Test image at the beginning of text
+        node = TextNode(
+            "![first image](https://example.com/first.png) followed by text",
+            TextType.TEXT,
+        )
+        new_nodes = split_nodes_image([node])
+        self.assertListEqual(
+            [
+                TextNode("first image", TextType.IMAGE, "https://example.com/first.png"),
+                TextNode(" followed by text", TextType.TEXT),
+            ],
+            new_nodes,
+        )
+
+    def test_split_images_at_end(self):
+        # Test image at the end of text
+        node = TextNode(
+            "Text followed by ![last image](https://example.com/last.png)",
+            TextType.TEXT,
+        )
+        new_nodes = split_nodes_image([node])
+        self.assertListEqual(
+            [
+                TextNode("Text followed by ", TextType.TEXT),
+                TextNode("last image", TextType.IMAGE, "https://example.com/last.png"),
+            ],
+            new_nodes,
+        )
+    
+    def test_split_links_basic(self):
+        # Test a single link in text
+        node = TextNode(
+            "Check out [this site](https://example.com) for more info",
+            TextType.TEXT,
+        )
+        new_nodes = split_nodes_link([node])
+        self.assertListEqual(
+            [
+                TextNode("Check out ", TextType.TEXT),
+                TextNode("this site", TextType.LINK, "https://example.com"),
+                TextNode(" for more info", TextType.TEXT),
+            ],
+            new_nodes,
+        )
+
+    def test_split_links_multiple(self):
+        # Test multiple links in text
+        node = TextNode(
+            "Visit [example1](https://example1.com) or [example2](https://example2.com) today",
+            TextType.TEXT,
+        )
+        new_nodes = split_nodes_link([node])
+        self.assertListEqual(
+            [
+                TextNode("Visit ", TextType.TEXT),
+                TextNode("example1", TextType.LINK, "https://example1.com"),
+                TextNode(" or ", TextType.TEXT),
+                TextNode("example2", TextType.LINK, "https://example2.com"),
+                TextNode(" today", TextType.TEXT),
+            ],
+            new_nodes,
+        )
+
+    def test_split_links_none(self):
+        # Test text with no links
+        node = TextNode("This is text with no links", TextType.TEXT)
+        new_nodes = split_nodes_link([node])
+        self.assertListEqual([node], new_nodes)
+        
+    def test_split_links_at_beginning(self):
+        # Test link at beginning of text
+        node = TextNode(
+            "[Start here](https://start.com) and continue reading",
+            TextType.TEXT,
+        )
+        new_nodes = split_nodes_link([node])
+        self.assertListEqual(
+            [
+                TextNode("Start here", TextType.LINK, "https://start.com"),
+                TextNode(" and continue reading", TextType.TEXT),
+            ],
+            new_nodes,
+        )
+
+    def test_split_links_at_end(self):
+        # Test link at end of text
+        node = TextNode(
+            "Read to the end and [click here](https://end.com)",
+            TextType.TEXT,
+        )
+        new_nodes = split_nodes_link([node])
+        self.assertListEqual(
+            [
+                TextNode("Read to the end and ", TextType.TEXT),
+                TextNode("click here", TextType.LINK, "https://end.com"),
+            ],
+            new_nodes,
+        )
+
+    def test_split_links_only_link(self):
+        # Test text that is only a link
+        node = TextNode(
+            "[standalone link](https://alone.com)",
+            TextType.TEXT,
+        )
+        new_nodes = split_nodes_link([node])
+        self.assertListEqual(
+            [
+                TextNode("standalone link", TextType.LINK, "https://alone.com"),
+            ],
+            new_nodes,
+        )
+
+    def test_split_links_consecutive(self):
+        # Test consecutive links without text between them
+        node = TextNode(
+            "[first link](https://first.com)[second link](https://second.com)",
+            TextType.TEXT,
+        )
+        new_nodes = split_nodes_link([node])
+        self.assertListEqual(
+            [
+                TextNode("first link", TextType.LINK, "https://first.com"),
+                TextNode("second link", TextType.LINK, "https://second.com"),
+            ],
+            new_nodes,
+        )
+        
+    def test_split_links_with_empty_text(self):
+        # Test links with empty text
+        node = TextNode(
+            "Before [](https://empty.com) after",
+            TextType.TEXT,
+        )
+        new_nodes = split_nodes_link([node])
+        self.assertListEqual(
+            [
+                TextNode("Before ", TextType.TEXT),
+                TextNode("", TextType.LINK, "https://empty.com"),
+                TextNode(" after", TextType.TEXT),
+            ],
+            new_nodes,
+        )
+
+    def test_split_links_with_markdown_in_text(self):
+        # Test links that contain markdown syntax in their text
+        node = TextNode(
+            "Check [**bold link**](https://bold.com) and [*italic link*](https://italic.com)",
+            TextType.TEXT,
+        )
+        new_nodes = split_nodes_link([node])
+        self.assertListEqual(
+            [
+                TextNode("Check ", TextType.TEXT),
+                TextNode("**bold link**", TextType.LINK, "https://bold.com"),
+                TextNode(" and ", TextType.TEXT),
+                TextNode("*italic link*", TextType.LINK, "https://italic.com"),
+            ],
+            new_nodes,
+        )
+
+    def test_split_images_with_links_text(self):
+        # Test images with link-like text that shouldn't be parsed as links
+        node = TextNode(
+            "Image with link-like alt text: ![Here's a [link]](https://example.com/img.png)",
+            TextType.TEXT,
+        )
+        new_nodes = split_nodes_image([node])
+        self.assertListEqual(
+            [
+                TextNode("Image with link-like alt text: ", TextType.TEXT),
+                TextNode("Here's a [link]", TextType.IMAGE, "https://example.com/img.png"),
+            ],
+            new_nodes,
+        )
+
+    def test_multiple_node_processing(self):
+        # Test that the function correctly processes multiple nodes
+        node1 = TextNode(
+            "First node with [a link](https://first.com)",
+            TextType.TEXT,
+        )
+        node2 = TextNode(
+            "Second node with no links",
+            TextType.TEXT,
+        )
+        node3 = TextNode(
+            "Third node with [another link](https://third.com)",
+            TextType.TEXT,
+        )
+        
+        new_nodes = split_nodes_link([node1, node2, node3])
+        
+        self.assertListEqual(
+            [
+                TextNode("First node with ", TextType.TEXT),
+                TextNode("a link", TextType.LINK, "https://first.com"),
+                TextNode("Second node with no links", TextType.TEXT),
+                TextNode("Third node with ", TextType.TEXT),
+                TextNode("another link", TextType.LINK, "https://third.com"),
+            ],
+            new_nodes,
+        )
+    def test_split_images_with_special_characters(self):
+        # Test images with special characters in alt text
+        node = TextNode(
+            "Image with special chars: ![Alt & text with: semicolons](https://example.com/special.png)",
+            TextType.TEXT,
+        )
+        new_nodes = split_nodes_image([node])
+        self.assertListEqual(
+            [
+                TextNode("Image with special chars: ", TextType.TEXT),
+                TextNode("Alt & text with: semicolons", TextType.IMAGE, "https://example.com/special.png"),
+            ],
+            new_nodes,
+        )
+
+
+    def test_split_images_at_beginning(self):
+        # Test image at beginning of text
+        node = TextNode(
+            "![First image](https://example.com/first.png)Followed by text",
+            TextType.TEXT,
+        )
+        new_nodes = split_nodes_image([node])
+        self.assertListEqual(
+            [
+                TextNode("First image", TextType.IMAGE, "https://example.com/first.png"),
+                TextNode("Followed by text", TextType.TEXT),
+            ],
+            new_nodes,
+        )
+
+    
+
+    
 if __name__ == "__main__":
     unittest.main()

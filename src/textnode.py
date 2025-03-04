@@ -1,7 +1,7 @@
 import re
 from enum import Enum
 
-from htmlnode import LeafNode
+from htmlnode import *
 
 class TextType(Enum):
     NORMAL = "normal"
@@ -127,11 +127,14 @@ def extract_markdown_images(text):
     # \(           - literal opening parenthesis (escaped with \)
     # ([^\(\)]*)   - capture group 2: any characters except parentheses, * means zero or more
     # \)           - literal closing parenthesis (escaped with \)
-    matches = re.findall(r"!\[([^\[\]]*)\]\(([^\(\)]*)\)", text)
+    matches = re.findall(r"!\[(.*?)\]\((.*?)\)", text)
     return matches
 
 def extract_markdown_links(text):
-    matches = re.findall(r"(?<!!)\[([^\[\]]*)\]\(([^\(\)]*)\)", text)
+    # Updated regex to handle nested parentheses in URLs
+    # We use negative lookbehind (?<!) to ensure we don't match image markdown
+    pattern = r"(?<!!)\[(.*?)\]\(([^)]*(?:\([^)]*\)[^)]*)*)\)"
+    matches = re.findall(pattern, text)
     return matches
 
 def split_nodes_image(old_nodes):
@@ -139,11 +142,41 @@ def split_nodes_image(old_nodes):
     #grabs nodes within old_nodes list one by one
     for node in old_nodes:
         #chekcs if nodes text_type is not TEXT if so will simply append the result and continue to next iteration (node)
-        if node.text_type != TextType.IMAGE:
+        if node.text_type != TextType.TEXT:
             result.append(node)
             continue 
+        
+        images = extract_markdown_images(node.text)
+        
+        if not images:
+            result.append(node)
+            continue
+            
+        current_text = node.text
+        
+        for alt_text, url, in images:
+            # The full markdown for this image looks like: ![alt_text](url)
+            image_markdown = f"![{alt_text}]({url})"
+            
+            # Split the current_text at the image markdown
+            # This gives us the text before the image and the text after
+            parts = current_text.split(image_markdown, 1)
+            
+            if parts[0]:
+                result.append(TextNode(parts[0],TextType.TEXT))
+            
+            result.append(TextNode(alt_text,TextType.IMAGE, url))
+            
+            # Update current_text to be whatever remains after the image
+            if len(parts) > 1:
+                current_text = parts[1]
+            else:
+                current_text = ""
+                
+        # Don't forget to add any remaining text after processing all images
+        if current_text:
+            result.append(TextNode(current_text, TextType.TEXT))
     
-    #TODO: Implement rest of code
     return result
 
 def split_nodes_link(old_nodes):
@@ -151,9 +184,39 @@ def split_nodes_link(old_nodes):
     #grabs nodes within old_nodes list one by one
     for node in old_nodes:
         #chekcs if nodes text_type is not TEXT if so will simply append the result and continue to next iteration (node)
-        if node.text_type != TextType.LINK:
+        if node.text_type != TextType.TEXT:
             result.append(node)
-            continue 
+            continue
+        
+        links = extract_markdown_links(node.text)
+        
+        if not links:
+            result.append(node)
+            continue
+            
+        current_text = node.text
+        
+        for link_text, url, in links:
+            # The full markdown for this image looks like: ![alt_text](url)
+            link_markdown = f"[{link_text}]({url})"
+            
+            # Split the current_text at the image markdown
+            # This gives us the text before the image and the text after
+            parts = current_text.split(link_markdown, 1)
+            
+            if parts[0]:
+                result.append(TextNode(parts[0],TextType.TEXT))
+            
+            result.append(TextNode(link_text,TextType.LINK, url))
+            
+            # Update current_text to be whatever remains after the image
+            if len(parts) > 1:
+                current_text = parts[1]
+            else:
+                current_text = ""
+                
+        # Don't forget to add any remaining text after processing all images
+        if current_text:
+            result.append(TextNode(current_text, TextType.TEXT)) 
     
-    #TODO: Implement rest of code
     return result
