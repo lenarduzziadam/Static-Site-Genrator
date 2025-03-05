@@ -482,7 +482,121 @@ class TestTextNode(unittest.TestCase):
             ],
             new_nodes,
         )
+        
+    def test_text_to_textnodes_plain_text(self):
+        # Test with plain text only
+        text = "This is plain text"
+        nodes = text_to_textnodes(text)
+        self.assertListEqual(
+            [TextNode("This is plain text", TextType.TEXT)],
+            nodes
+        )
 
+    def test_text_to_textnodes_bold(self):
+        # Test with bold text
+        text = "This is **bold** text"
+        nodes = text_to_textnodes(text)
+        self.assertListEqual(
+            [
+                TextNode("This is ", TextType.TEXT),
+                TextNode("bold", TextType.BOLD),
+                TextNode(" text", TextType.TEXT)
+            ],
+            nodes
+        )
+
+    def test_text_to_textnodes_mixed_content(self):
+        text = "This is **bold** and _italic_ text with `code`"
+        nodes = text_to_textnodes(text)
+        
+        expected_nodes = [
+            TextNode("This is ", TextType.TEXT),
+            TextNode("bold", TextType.BOLD),
+            TextNode(" and ", TextType.TEXT),
+            TextNode("italic", TextType.ITALIC),
+            TextNode(" text with ", TextType.TEXT),
+            TextNode("code", TextType.CODE)
+        ]
+    
+        self.assertListEqual(expected_nodes, nodes)
+
+    def test_text_to_textnodes_code(self):
+        # Test with code
+        text = "This is `code` text"
+        nodes = text_to_textnodes(text)
+        self.assertListEqual(
+            [
+                TextNode("This is ", TextType.TEXT),
+                TextNode("code", TextType.CODE),
+                TextNode(" text", TextType.TEXT)
+            ],
+            nodes
+        )
+    
+    def test_text_to_textnodes_italic(self):
+        # Test with italic text
+        text = "This is _italic_ text"
+        nodes = text_to_textnodes(text)
+        self.assertListEqual(
+            [
+                TextNode("This is ", TextType.TEXT),
+                TextNode("italic", TextType.ITALIC),
+                TextNode(" text", TextType.TEXT)
+            ],
+            nodes
+        )
+    
+    def test_text_to_textnodes_link_with_nested_parentheses(self):
+        # Test with a link that contains nested parentheses in the URL
+        text = "Check out this [link](https://example.com/path(nested)/more)"
+        nodes = text_to_textnodes(text)
+        
+        expected_nodes = [
+            TextNode("Check out this ", TextType.TEXT),
+            TextNode("link", TextType.LINK, "https://example.com/path(nested)/more")
+        ]
+        
+        self.assertListEqual(expected_nodes, nodes)
+    
+    def test_consecutive_links(self):
+        text = "Visit [first](https://first.com) and [second](https://second.com)"
+        nodes = text_to_textnodes(text)
+        expected = [
+            TextNode("Visit ", TextType.TEXT),
+            TextNode("first", TextType.LINK, "https://first.com"),
+            TextNode(" and ", TextType.TEXT),
+            TextNode("second", TextType.LINK, "https://second.com")
+        ]
+        self.assertEqual(expected, nodes)
+        
+    def test_links_with_special_chars(self):
+        text = "See [example](https://example.com/path?query=value&other=123)"
+        nodes = text_to_textnodes(text)
+        expected = [
+            TextNode("See ", TextType.TEXT),
+            TextNode("example", TextType.LINK, "https://example.com/path?query=value&other=123")
+        ]
+        self.assertEqual(expected, nodes)
+
+    def test_links_with_special_chars(self):
+        text = "See [example](https://example.com/path?query=value&other=123)"
+        nodes = text_to_textnodes(text)
+        expected = [
+            TextNode("See ", TextType.TEXT),
+            TextNode("example", TextType.LINK, "https://example.com/path?query=value&other=123")
+        ]
+        self.assertEqual(expected, nodes)
+
+    def test_empty_link_parts(self):
+        text = "Empty text [](https://example.com) and empty URL [text]()"
+        nodes = text_to_textnodes(text)
+        expected = [
+            TextNode("Empty text ", TextType.TEXT),
+            TextNode("", TextType.LINK, "https://example.com"),
+            TextNode(" and empty URL ", TextType.TEXT),
+            TextNode("text", TextType.LINK, "")
+        ]
+        self.assertEqual(expected, nodes)
     
 
     

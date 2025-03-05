@@ -133,7 +133,7 @@ def extract_markdown_images(text):
 def extract_markdown_links(text):
     # Updated regex to handle nested parentheses in URLs
     # We use negative lookbehind (?<!) to ensure we don't match image markdown
-    pattern = r"(?<!!)\[(.*?)\]\(([^)]*(?:\([^)]*\)[^)]*)*)\)"
+    pattern = r"(?<!!)\[(.*?)\]\(((?:[^()]*|\([^()]*\))*)\)"
     matches = re.findall(pattern, text)
     return matches
 
@@ -220,3 +220,18 @@ def split_nodes_link(old_nodes):
             result.append(TextNode(current_text, TextType.TEXT)) 
     
     return result
+
+#combining function time classless again CHAMP
+def text_to_textnodes(text):
+    #single text node defined with text value
+    nodes = [TextNode(text, TextType.TEXT)]
+    
+    nodes = split_nodes_delimiter(nodes, "**", TextType.BOLD)
+    nodes = split_nodes_delimiter(nodes, "_", TextType.ITALIC)
+    nodes = split_nodes_delimiter(nodes, "`", TextType.CODE)
+    
+    #calling existing node image and node line split function
+    nodes = split_nodes_image(nodes)
+    nodes = split_nodes_link(nodes)
+    
+    return nodes
