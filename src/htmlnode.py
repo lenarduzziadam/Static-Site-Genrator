@@ -83,5 +83,17 @@ class BlockType(Enum):
     UNORDERED_LIST = "unordered list"
     ORDERED_LIST = "ordered list"
     
-    def block_to_block_type(block_text):
-        pass
+def block_to_block_type(block_text):
+    match block_text.text_type:
+            case BlockType.HEADING:
+                pass #1-6 '#' characters
+            case BlockType.CODE:
+                pass #must start with ``` and end with ``` backticks
+            case BlockType.QUOTE:
+                pass #every line in a quote block must start with '>'
+            case BlockType.UNORDERED_LIST:
+                pass #every line in unordered lists must start with - followed by a space (- list_item_one) 
+            case BlockType.ORDERED_LIST:
+                pass #every line in an ordered list must begin with a number then have a . and space (7. lucky)
+            case _:
+                pass #block is normal paragrpah if this is case <p> </p>
