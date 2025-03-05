@@ -52,3 +52,25 @@ class ParentNode(HTMLNode):
         props_html = self.props_to_html() 
         return f"<{self.tag}{props_html}>{parent_node_children}</{self.tag}>"
 
+
+
+def markdown_to_blocks(markdown):
+    blocks = markdown.split("\n\n")
+    new_blocks = []
+    for block in blocks:
+        stripped_block = block.strip()
+        if not block:
+            continue
+        
+        
+        if "\n" in block:
+            strings = stripped_block.split("\n")
+            fixed_block = []
+            for string in strings:
+                stripped_string = string.strip()
+                fixed_block.append(stripped_string)
+            stripped_block ="\n".join(fixed_block)
+            
+        
+        new_blocks.append(stripped_block)
+    return new_blocks

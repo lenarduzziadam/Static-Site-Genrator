@@ -166,4 +166,35 @@ class TestHTMLNode(unittest.TestCase):
         expected = "<div><div><div><div><div><div><div><span>Deep content</span></div></div></div></div></div></div></div>"
         self.assertEqual(level1.to_html(), expected)
         
-    
+    def test_markdown_to_blocks(self):
+            md = """
+        This is **bolded** paragraph
+
+        This is another paragraph with _italic_ text and `code` here
+        This is the same paragraph on a new line
+
+        - This is a list
+        - with items
+        """
+            blocks = markdown_to_blocks(md)
+            self.assertEqual(
+                blocks,
+                [
+                    "This is **bolded** paragraph",
+                    "This is another paragraph with _italic_ text and `code` here\nThis is the same paragraph on a new line",
+                    "- This is a list\n- with items",
+                ],
+            )
+            
+    def test_single_block_multiple_lines_md(self):
+            md = """
+                This is a paragraph.
+                It continues on a second line.
+            """
+            blocks = markdown_to_blocks(md)
+            self.assertEqual(
+                blocks,
+                [
+                    "This is a paragraph.\nIt continues on a second line."
+                ]
+            )

@@ -598,6 +598,7 @@ class TestTextNode(unittest.TestCase):
         ]
         self.assertEqual(expected, nodes)
     
+    
 
     
 if __name__ == "__main__":

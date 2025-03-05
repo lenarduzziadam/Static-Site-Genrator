@@ -116,6 +116,7 @@ def split_nodes_delimiter(old_nodes, delimiter, text_type):
 # (...)    - capturing group
 # (?:...)  - non-capturing group
 # a|b      - match a or b
+#  |       NOTE: the above seperator for match is | specificlaly 
 # \        - escape special characters
 
 def extract_markdown_images(text):
