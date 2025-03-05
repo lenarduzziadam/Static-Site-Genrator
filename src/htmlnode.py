@@ -80,20 +80,70 @@ class BlockType(Enum):
     HEADING = "heading"
     CODE = "code"
     QUOTE = "quote"
-    UNORDERED_LIST = "unordered list"
-    ORDERED_LIST = "ordered list"
+    UNORDERED_LIST = "unordered_list"
+    ORDERED_LIST = "ordered_list"
     
 def block_to_block_type(block_text):
-    match block_text.text_type:
-            case BlockType.HEADING:
-                pass #1-6 '#' characters
-            case BlockType.CODE:
-                pass #must start with ``` and end with ``` backticks
-            case BlockType.QUOTE:
-                pass #every line in a quote block must start with '>'
-            case BlockType.UNORDERED_LIST:
-                pass #every line in unordered lists must start with - followed by a space (- list_item_one) 
-            case BlockType.ORDERED_LIST:
-                pass #every line in an ordered list must begin with a number then have a . and space (7. lucky)
-            case _:
-                pass #block is normal paragrpah if this is case <p> </p>
+    # Check if Heading
+    if block_text.startswith('#'):
+        # Check if there are no newlines in the text (must be a single line)
+        if '\n' not in block_text:
+            # Check if it follows heading format (# followed by space)
+            parts = block_text.split(' ', 1)
+            if len(parts) > 1 and 1 <= len(parts[0]) <= 6 and all(char == '#' for char in parts[0]):
+                return BlockType.HEADING
+    
+    # Check if Code block
+    elif block_text.startswith('```') and block_text.endswith('```'):
+        return BlockType.CODE
+    
+    # Check if Quote block
+    lines = block_text.split('\n')
+    is_quote = True
+    for line in lines:
+        if not line.startswith('>'):
+            is_quote = False
+            break
+    if is_quote:
+        return BlockType.QUOTE
+   
+    #check if unordered
+    is_unordered = True
+    #iterates line by line checking for proper start breaks out if condition not there
+    for line in lines:
+        if not line.startswith('- '):
+            is_unordered = False
+            break
+    if is_unordered:
+        return BlockType.UNORDERED_LIST
+    
+    #checks if ordered
+    is_ordered = True
+    
+    #enumerates line by line
+    for i, line in enumerate(lines):
+        #checks if line has proper start of not breaks out if not utilizing i and enumeration to get the proper number
+        expected_prefix = f"{i+1}. "
+        if not line.startswith(expected_prefix):
+            is_ordered = False
+            break
+    if is_ordered:
+        return BlockType.ORDERED_LIST #returns only if is_ordered true
+
+
+    #if nothing else returns as paragraph type 
+    return BlockType.PARAGRAPH
+
+def markdown_to_html_node(markdown):
+    blocked_markdown = markdown_to_blocks(markdown)
+    parent_node = HTMLNode("div", None, None, [])  # Create the parent div
+    
+    for block in blocked_markdown:
+        block_type = block_to_block_type(block)
+        child_node = None
+        match block_type:
+            case "paragraph":
+                child_node = HTMLNode("p", None, None, text_to_children(block))
+            
+            case "heading":
+                pass
