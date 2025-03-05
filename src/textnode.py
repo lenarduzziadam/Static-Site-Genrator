@@ -3,6 +3,7 @@ from enum import Enum
 
 from htmlnode import *
 
+
 class TextType(Enum):
     NORMAL = "normal"
     TEXT = "text"

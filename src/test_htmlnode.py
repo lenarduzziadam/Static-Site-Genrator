@@ -198,3 +198,93 @@ class TestHTMLNode(unittest.TestCase):
                     "This is a paragraph.\nIt continues on a second line."
                 ]
             )
+            
+    def test_edge_case_block_trailing_newline(self):
+            md = """
+                
+                # Heading
+
+                Some text with **bold** markdown.
+
+                - Item 1
+                - Item 2
+            """
+            blocks = markdown_to_blocks(md)
+            self.assertEqual(
+                blocks,
+                [
+                    "# Heading",
+                    "Some text with **bold** markdown.",
+                    "- Item 1\n- Item 2"
+
+                ]
+            )
+                   
+    def test_empty_block_multiple_lines_md(self):
+            md = """
+                
+            """
+            blocks = markdown_to_blocks(md)
+            self.assertEqual(
+                blocks,
+                [
+                    ""
+                ]
+            )
+    def test_irregular_lines_md(self):
+            md = """
+                # Heading
+
+
+
+                This is a paragraph.
+
+
+                - Item 1
+
+                - Item 2
+            """
+            blocks = markdown_to_blocks(md)
+            self.assertEqual(
+                blocks,
+                [
+                    
+                    "# Heading",
+                    "This is a paragraph.",
+                    "- Item 1",
+                    "- Item 2"
+                    
+                ]
+            )
+        
+    def test_mixed_spaced_lines_md(self):
+        md = """
+            Paragraph with multiple lines
+                indented on the second line
+
+            Final block
+        """
+        blocks = markdown_to_blocks(md)
+        self.assertEqual(
+            blocks,
+            [
+                    
+                
+            "Paragraph with multiple lines\nindented on the second line",
+            "Final block"
+
+                    
+            ]
+        )    
+    def test_single_block_no_newlines_md(self):
+            md = """
+                This is a single block without any extra spacing.
+            """
+            blocks = markdown_to_blocks(md)
+            self.assertEqual(
+                blocks,
+                [
+                "This is a single block without any extra spacing."
+                ]
+            ) 
+    

@@ -1,4 +1,4 @@
-
+from enum import Enum
 
 class HTMLNode:
     def __init__(self, tag=None, value=None, children=None, props=None):
@@ -74,3 +74,14 @@ def markdown_to_blocks(markdown):
         
         new_blocks.append(stripped_block)
     return new_blocks
+
+class BlockType(Enum):
+    PARAGRAPH = "paragraph"
+    HEADING = "heading"
+    CODE = "code"
+    QUOTE = "quote"
+    UNORDERED_LIST = "unordered list"
+    ORDERED_LIST = "ordered list"
+    
+    def block_to_block_type(block_text):
+        pass
