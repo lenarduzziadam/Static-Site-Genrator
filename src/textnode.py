@@ -238,6 +238,23 @@ def text_to_textnodes(text):
     
     return nodes
 
+
+def handle_code_block(block):
+    # Remove the ``` markers
+    lines = block.strip().split('\n')
+    # Skip the first and last lines that contain ```
+    code_content = '\n'.join(lines[1:-1])
+    
+    # Ensure the content ends with a newline
+    if not code_content.endswith('\n'):
+        code_content += '\n'
+        
+    # Create the nested structure - code inside pre
+    code_node = LeafNode("code", code_content)
+    pre_node = ParentNode("pre", [code_node])
+    
+    return pre_node
+
 def text_to_children(text):
     # Convert the text to a TextNode
     text_node = TextNode(text, TextType.TEXT)
@@ -256,6 +273,18 @@ def text_to_children(text):
     
     return html_nodes
 
+def handle_unordered_list(block):
+    items = block.split("* ")
+    # Remove the first empty item
+    items = [item for item in items if item.strip()]
+    
+    list_items = []
+    for item in items:
+        # Parse inline markdown in each list item
+        item_html = text_to_children(item.strip())
+        list_items.append(ParentNode("li", item_html))
+    
+    return ParentNode("ul", list_items)
 
 def markdown_to_html_node(markdown):
     blocked_markdown = markdown_to_blocks(markdown)
@@ -295,26 +324,8 @@ def markdown_to_html_node(markdown):
                 child_node = ParentNode(f"h{heading_level}", text_to_children(text_content))
             
             case BlockType.CODE:
-                # Extract code content keeping newlines
-                lines = block.split('\n')
-                # Remove empty lines at the beginning and end
-                while lines and not lines[0].strip():
-                    lines.pop(0)
-                while lines and not lines[-1].strip():
-                    lines.pop()
-                
-                # Remove the triple backticks
-                if lines and '```' in lines[0]:
-                    lines = lines[1:]
-                if lines and '```' in lines[-1]:
-                    lines = lines[:-1]
-                
-                # Join with newlines to preserve format
-                code_content = '\n'.join(lines)
-                
-                # Create the code node - notice using TextType.TEXT instead of "text"
-                code_node = LeafNode("code", code_content)
-                child_node = ParentNode("pre", [code_node])
+                if block_type == BlockType.CODE:
+                    child_node = handle_code_block(block)
             
             case BlockType.UNORDERED_LIST:
                  # Create ul node with li children

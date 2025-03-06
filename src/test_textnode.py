@@ -632,6 +632,66 @@ class TestBlockToHTML(unittest.TestCase) :
             "<div><pre><code>This is text that _should_ remain\nthe **same** even with inline stuff\n</code></pre></div>",
         )
 
+    def test_unordered_list(self):
+        md = """
+    * Item 1
+    * Item 2
+    * Item 3 with **bold** text
+    """
+
+        node = markdown_to_html_node(md)
+        html = node.to_html()
+        self.assertEqual(
+            html,
+            "<div><ul><li>Item 1</li><li>Item 2</li><li>Item 3 with <b>bold</b> text</li></ul></div>",
+        )
     
+    def test_ordered_list(self):
+        md = """
+    1. First item
+    2. Second item with _italic_
+    3. Third item with `code`
+    """
+
+        node = markdown_to_html_node(md)
+        html = node.to_html()
+        self.assertEqual(
+            html,
+            "<div><ol><li>First item</li><li>Second item with <i>italic</i></li><li>Third item with <code>code</code></li></ol></div>",
+        )
+        
+    def test_mixed_blocks(self):
+        md = """
+    # Heading 1
+
+    This is a paragraph with **bold** text.
+
+    * List item 1
+    * List item 2
+
+    > This is a quote with _italic_ text.
+    code block
+    with multiple lines
+
+
+    1. Ordered item 1
+    2. Ordered item 2
+    """
+
+        node = markdown_to_html_node(md)
+        html = node.to_html()
+        expected = (
+            "<div>"
+            "<h1>Heading 1</h1>"
+            "<p>This is a paragraph with <b>bold</b> text.</p>"
+            "<ul><li>List item 1</li><li>List item 2</li></ul>"
+            "<blockquote>This is a quote with <i>italic</i> text.</blockquote>"
+            "<pre><code>code block\nwith multiple lines\n</code></pre>"
+            "<ol><li>Ordered item 1</li><li>Ordered item 2</li></ol>"
+            "</div>"
+        )
+        self.assertEqual(html, expected)
+
+
 if __name__ == "__main__":
     unittest.main()
