@@ -336,14 +336,20 @@ def markdown_to_html_node(markdown):
                     child_node = handle_code_block(block)
             
             case BlockType.UNORDERED_LIST:
-                 # Create ul node with li children
-                li_nodes = []
-                for item in block.split('\n'):
-                    if item.strip():  # Skip empty lines
-                        if item.startswith('_ '):
-                            item_text = item.strip()[2:].strip()  # Remove "- " and whitespace
-                            li_nodes.append(ParentNode("li", text_to_children(item_text)))
-                child_node = ParentNode("ul", li_nodes)
+                if block_type == BlockType.UNORDERED_LIST:
+                    # Create ul node with li children
+                    li_nodes = []
+                    for item in block.split('\n'):
+                        if item.strip():  # Skip empty lines
+                            # Strip the '* ' or '- ' prefix
+                            if item.strip().startswith('* '):
+                                item_text = item.strip()[2:]
+                                li_nodes.append(ParentNode("li", text_to_children(item_text)))
+                            elif item.strip().startswith('- '):
+                                item_text = item.strip()[2:]
+                                li_nodes.append(ParentNode("li", text_to_children(item_text)))
+                    if li_nodes:  # Only add if we have list items
+                        child_node = ParentNode("ul", li_nodes)
             
             case BlockType.ORDERED_LIST:
                 # Create ol node with li children
