@@ -385,10 +385,6 @@ def markdown_to_html_node(markdown):
                 
         if child_node:
             parent_node.children.append(child_node)
-        
-        
-        for child in parent_node.children:
-            f.write(f"Child: {child.to_html()}\n")
     
     return parent_node
             
