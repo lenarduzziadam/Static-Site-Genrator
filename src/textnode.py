@@ -294,21 +294,29 @@ def markdown_to_html_node(markdown):
     # For debugging
     with open("debug.txt", "w") as f:
         f.write(f"Number of blocks: {len(blocked_markdown)}\n")
-        
+    
+    #processes each block in markdown    
     for block in blocked_markdown:
         if not block.strip():  # Skip completely empty blocks
             continue
-        block_type = block_to_block_type(block)
-        child_node = None
         
-        # Debug
+        #determines what type of block we are dealing with and sets said value to block)type
+        block_type = block_to_block_type(block)
+        child_node = None #reset child node at the start of each iteration (but after the skip 'if not' above)
+        
+        # for debug writes info to file
         with open("debug.txt", "a") as f:
             f.write(f"Block type: {block_type}, Block: {block}\n")
             
         match block_type:
             case BlockType.PARAGRAPH:
+                 # For paragraphs, join all lines with spaces and remove extra whitespace
                 paragraph_text = ' '.join([line.strip() for line in block.split('\n') if line.strip()])
+                
+                # Process inline markdown (bold, italic, code) within the paragraph text
                 children = text_to_children(paragraph_text)
+                
+                # Create paragraph node with the processed children
                 child_node = ParentNode("p", children)
             
             case BlockType.HEADING:
@@ -332,8 +340,9 @@ def markdown_to_html_node(markdown):
                 li_nodes = []
                 for item in block.split('\n'):
                     if item.strip():  # Skip empty lines
-                        item_text = item.strip()[2:].strip()  # Remove "- " and whitespace
-                        li_nodes.append(ParentNode("li", text_to_children(item_text)))
+                        if item.startswith('_ '):
+                            item_text = item.strip()[2:].strip()  # Remove "- " and whitespace
+                            li_nodes.append(ParentNode("li", text_to_children(item_text)))
                 child_node = ParentNode("ul", li_nodes)
             
             case BlockType.ORDERED_LIST:
@@ -363,7 +372,7 @@ def markdown_to_html_node(markdown):
         
         
     # Debug by writing to a file
-    with open("debug_output.html", "w") as f:
+    with open("debug.html", "w") as f:
         f.write(f"Number of children: {len(parent_node.children)}\n")
         for child in parent_node.children:
             f.write(f"Child: {child.to_html()}\n")
