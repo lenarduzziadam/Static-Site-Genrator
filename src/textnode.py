@@ -321,12 +321,7 @@ def markdown_to_html_node(markdown):
         block_type = block_to_block_type(block)
         child_node = None #reset child node at the start of each iteration (but after the skip 'if not' above)
         
-        # for debug writes info to file
-        with open("debug.txt", "a") as f:
-            f.write(f"Block type: {block_type}, Block: {block}\n")
-        
-        
-            
+             
         match block_type:
             # Check if this block is actually a list (even if block_to_block_type doesn't recognize it)
                 
@@ -392,9 +387,6 @@ def markdown_to_html_node(markdown):
             parent_node.children.append(child_node)
         
         
-    # Debug by writing to a file
-    with open("debug.html", "w") as f:
-        f.write(f"Number of children: {len(parent_node.children)}\n")
         for child in parent_node.children:
             f.write(f"Child: {child.to_html()}\n")
     
