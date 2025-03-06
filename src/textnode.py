@@ -237,3 +237,125 @@ def text_to_textnodes(text):
     nodes = split_nodes_link(nodes)
     
     return nodes
+
+def text_to_children(text):
+    # Convert the text to a TextNode
+    text_node = TextNode(text, TextType.TEXT)
+    
+    # Split the node to process inline markdown
+    inline_nodes = split_nodes_delimiter([text_node], "**", TextType.BOLD)
+    inline_nodes = split_nodes_delimiter(inline_nodes, "_", TextType.ITALIC)
+    inline_nodes = split_nodes_delimiter(inline_nodes, "`", TextType.CODE)
+    # Add other delimiters if needed
+    
+    # Convert each TextNode to HTMLNode
+    html_nodes = []
+    for node in inline_nodes:
+        html_node = text_node_to_html_node(node)
+        html_nodes.append(html_node)
+    
+    return html_nodes
+
+
+def markdown_to_html_node(markdown):
+    blocked_markdown = markdown_to_blocks(markdown)
+    child_node = None
+    parent_node = ParentNode("div", [])
+    
+    # For debugging
+    with open("debug.txt", "w") as f:
+        f.write(f"Number of blocks: {len(blocked_markdown)}\n")
+        
+    for block in blocked_markdown:
+        if not block.strip():  # Skip completely empty blocks
+            continue
+        block_type = block_to_block_type(block)
+        child_node = None
+        
+        # Debug
+        with open("debug.txt", "a") as f:
+            f.write(f"Block type: {block_type}, Block: {block}\n")
+            
+        match block_type:
+            case BlockType.PARAGRAPH:
+                paragraph_text = ' '.join([line.strip() for line in block.split('\n') if line.strip()])
+                children = text_to_children(paragraph_text)
+                child_node = ParentNode("p", children)
+            
+            case BlockType.HEADING:
+                heading_level = 0
+                for char in block:
+                    if char == '#':
+                        heading_level += 1
+                    else:
+                        break
+                text_content = block[heading_level:].strip()
+                
+                # Create appropriate h1-h6 node
+                child_node = ParentNode(f"h{heading_level}", text_to_children(text_content))
+            
+            case BlockType.CODE:
+                # Extract code content keeping newlines
+                lines = block.split('\n')
+                # Remove empty lines at the beginning and end
+                while lines and not lines[0].strip():
+                    lines.pop(0)
+                while lines and not lines[-1].strip():
+                    lines.pop()
+                
+                # Remove the triple backticks
+                if lines and '```' in lines[0]:
+                    lines = lines[1:]
+                if lines and '```' in lines[-1]:
+                    lines = lines[:-1]
+                
+                # Join with newlines to preserve format
+                code_content = '\n'.join(lines)
+                
+                # Create the code node - notice using TextType.TEXT instead of "text"
+                code_node = LeafNode("code", code_content)
+                child_node = ParentNode("pre", [code_node])
+            
+            case BlockType.UNORDERED_LIST:
+                 # Create ul node with li children
+                li_nodes = []
+                for item in block.split('\n'):
+                    if item.strip():  # Skip empty lines
+                        item_text = item.strip()[2:].strip()  # Remove "- " and whitespace
+                        li_nodes.append(ParentNode("li", text_to_children(item_text)))
+                child_node = ParentNode("ul", li_nodes)
+            
+            case BlockType.ORDERED_LIST:
+                # Create ol node with li children
+                li_nodes = []
+                for item in block.split('\n'):
+                    if item.strip():  # Skip empty lines
+                        # Find the period after the number
+                        text_content = item[item.find('.')+1:].strip()
+                        li_nodes.append(ParentNode("li", text_to_children(text_content)))
+                child_node = ParentNode("ol", li_nodes)
+            
+            case BlockType.QUOTE:
+                # Create blockquote node
+                lines = []
+                for line in block.split('\n'):
+                    if line.strip():
+                        # Remove the '> ' from the beginning of each line
+                        if line.strip().startswith('>'):
+                            line = line.strip()[1:].strip()
+                        lines.append(line)
+                quote_text = ' '.join(lines)
+                child_node = ParentNode("blockquote", text_to_children(quote_text))
+
+        if child_node:
+            parent_node.children.append(child_node)
+        
+        
+    # Debug by writing to a file
+    with open("debug_output.html", "w") as f:
+        f.write(f"Number of children: {len(parent_node.children)}\n")
+        for child in parent_node.children:
+            f.write(f"Child: {child.to_html()}\n")
+    
+    return parent_node
+            

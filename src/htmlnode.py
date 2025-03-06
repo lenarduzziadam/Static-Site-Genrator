@@ -1,5 +1,4 @@
 from enum import Enum
-
 class HTMLNode:
     def __init__(self, tag=None, value=None, children=None, props=None):
         self.tag = tag
@@ -134,16 +133,4 @@ def block_to_block_type(block_text):
     #if nothing else returns as paragraph type 
     return BlockType.PARAGRAPH
 
-def markdown_to_html_node(markdown):
-    blocked_markdown = markdown_to_blocks(markdown)
-    parent_node = HTMLNode("div", None, None, [])  # Create the parent div
-    
-    for block in blocked_markdown:
-        block_type = block_to_block_type(block)
-        child_node = None
-        match block_type:
-            case "paragraph":
-                child_node = HTMLNode("p", None, None, text_to_children(block))
-            
-            case "heading":
-                pass
+
