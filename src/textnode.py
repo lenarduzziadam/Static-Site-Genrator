@@ -273,18 +273,35 @@ def text_to_children(text):
     
     return html_nodes
 
-def handle_unordered_list(block):
-    items = block.split("* ")
-    # Remove the first empty item
-    items = [item for item in items if item.strip()]
+def parse_quote_block(markdown_text):
+    """
+    Parses a markdown block containing a quote into a nested `blockquote` HTML structure.
     
-    list_items = []
-    for item in items:
-        # Parse inline markdown in each list item
-        item_html = text_to_children(item.strip())
-        list_items.append(ParentNode("li", item_html))
-    
-    return ParentNode("ul", list_items)
+    Args:
+        markdown_text (str): The raw text of the quote block, including any `>` characters.
+
+    Returns:
+        ParentNode: The parsed `blockquote` node with children appropriately structured.
+    """
+    lines = markdown_text.split("\n")
+    root_node = ParentNode("blockquote")
+    current_node = root_node
+    for line in lines:
+        if line.strip():  # Skip completely empty lines
+            depth = len(line) - len(line.lstrip('>'))  # Count the `>` for nesting
+            content = line.lstrip('>').strip()  # Remove `>` and whitespace
+            while depth > 1:  # Handle nested blockquotes if depth > 1
+                # Create a child blockquote node if not present
+                child = ParentNode("blockquote")
+                if not current_node.has_children():
+                    current_node.add_child(child)
+                current_node = current_node.children[-1]  # Dive into the child node
+                depth -= 1
+            current_node.add_child(TextNode(content))  # Add the inner text as a child
+        else:
+            current_node.add_child(TextNode(""))  # Add empty lines as text nodes
+
+    return root_node
 
 def markdown_to_html_node(markdown):
     blocked_markdown = markdown_to_blocks(markdown)
@@ -307,8 +324,12 @@ def markdown_to_html_node(markdown):
         # for debug writes info to file
         with open("debug.txt", "a") as f:
             f.write(f"Block type: {block_type}, Block: {block}\n")
+        
+        
             
         match block_type:
+            # Check if this block is actually a list (even if block_to_block_type doesn't recognize it)
+                
             case BlockType.PARAGRAPH:
                  # For paragraphs, join all lines with spaces and remove extra whitespace
                 paragraph_text = ' '.join([line.strip() for line in block.split('\n') if line.strip()])
@@ -336,7 +357,6 @@ def markdown_to_html_node(markdown):
                     child_node = handle_code_block(block)
             
             case BlockType.UNORDERED_LIST:
-                if block_type == BlockType.UNORDERED_LIST:
                     # Create ul node with li children
                     li_nodes = []
                     for item in block.split('\n'):
@@ -362,17 +382,12 @@ def markdown_to_html_node(markdown):
                 child_node = ParentNode("ol", li_nodes)
             
             case BlockType.QUOTE:
-                # Create blockquote node
-                lines = []
-                for line in block.split('\n'):
-                    if line.strip():
-                        # Remove the '> ' from the beginning of each line
-                        if line.strip().startswith('>'):
-                            line = line.strip()[1:].strip()
-                        lines.append(line)
-                quote_text = ' '.join(lines)
-                child_node = ParentNode("blockquote", text_to_children(quote_text))
-
+                # Strip leading '>' from each line and join them into a single block
+                stripped_content = " ".join(line.lstrip("> ") for line in block.split("\n"))
+                    
+                # Use text_to_children to parse inline markdown within the quote
+                child_node = ParentNode("blockquote", text_to_children(stripped_content))
+                
         if child_node:
             parent_node.children.append(child_node)
         

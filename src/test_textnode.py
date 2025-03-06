@@ -634,9 +634,9 @@ class TestBlockToHTML(unittest.TestCase) :
 
     def test_unordered_list(self):
         md = """
-    * Item 1
-    * Item 2
-    * Item 3 with **bold** text
+    - Item 1
+    - Item 2
+    - Item 3 with **bold** text
     """
 
         node = markdown_to_html_node(md)
@@ -660,34 +660,123 @@ class TestBlockToHTML(unittest.TestCase) :
             "<div><ol><li>First item</li><li>Second item with <i>italic</i></li><li>Third item with <code>code</code></li></ol></div>",
         )
         
-    def test_mixed_blocks(self):
+    def test_quote_block(self):
         md = """
-    # Heading 1
-
-    This is a paragraph with **bold** text.
-
-    * List item 1
-    * List item 2
-
     > This is a quote with _italic_ text.
-    code block
-    with multiple lines
-
-
-    1. Ordered item 1
-    2. Ordered item 2
     """
 
         node = markdown_to_html_node(md)
         html = node.to_html()
         expected = (
             "<div>"
-            "<h1>Heading 1</h1>"
-            "<p>This is a paragraph with <b>bold</b> text.</p>"
-            "<ul><li>List item 1</li><li>List item 2</li></ul>"
             "<blockquote>This is a quote with <i>italic</i> text.</blockquote>"
-            "<pre><code>code block\nwith multiple lines\n</code></pre>"
-            "<ol><li>Ordered item 1</li><li>Ordered item 2</li></ol>"
+            "</div>"
+        )
+        self.assertEqual(html, expected)
+    
+    def test_multiline_quote(self):
+        md = """
+    > This is a multiline
+    > quote with _italic_ and **bold** text.
+    """
+        node = markdown_to_html_node(md)
+        html = node.to_html()
+        expected = (
+            "<div>"
+            "<blockquote>This is a multiline quote with <i>italic</i> and <b>bold</b> text.</blockquote>"
+            "</div>"
+        )
+        self.assertEqual(html, expected)
+        
+    def test_quote_and_paragraph(self):
+        md = """
+    > This is a quote.
+
+    This is a paragraph following it.
+    """
+        node = markdown_to_html_node(md)
+        html = node.to_html()
+        expected = (
+            "<div>"
+            "<blockquote>This is a quote.</blockquote>"
+            "<p>This is a paragraph following it.</p>"
+            "</div>"
+        )
+        self.assertEqual(html, expected)
+    
+    def test_nested_quotes(self):
+        md = (
+        "> This is a quote.\n"
+        ">> This is a nested quote.\n"
+        )
+        node = markdown_to_html_node(md)
+        html = node.to_html()
+        expected = (
+            "<div>"
+            "<blockquote>This is a quote."
+            " This is a nested quote."
+            "</blockquote>"
+            "</div>"
+        )
+        self.assertEqual(html, expected)
+        
+    def test_multiline2_quote(self):
+        md = (
+            "> This is the first line of the quote.\n"
+            "> And this is the second line."
+        )
+        node = markdown_to_html_node(md)
+        html = node.to_html()
+        expected = (
+            "<div>"
+            "<blockquote>This is the first line of the quote. And this is the second line.</blockquote>"
+            "</div>"
+        )
+        self.assertEqual(html, expected)
+    
+    def test_leading_spaces_in_quote(self):
+        md = (
+            "   > This quote has leading spaces.\n"
+            "   > But it should still work."
+        )
+        node = markdown_to_html_node(md)
+        html = node.to_html()
+        expected = (
+            "<div>"
+            "<blockquote>This quote has leading spaces. But it should still work.</blockquote>"
+            "</div>"
+        )
+        self.assertEqual(html, expected)
+        
+    def test_quote_with_inline_formatting(self):
+        md = "> This is a quote with **bold** text and _italic_ text."
+        node = markdown_to_html_node(md)
+        html = node.to_html()
+        expected = (
+            "<div>"
+            "<blockquote>This is a quote with <b>bold</b> text and <i>italic</i> text.</blockquote>"
+            "</div>"
+        )
+        self.assertEqual(html, expected)
+    
+    def test_simple_code_block(self):
+        md = "```\ndef hello():\nprint(\"Hello, world!\")\n```"
+        node = markdown_to_html_node(md)
+        html = node.to_html()
+        expected = (
+            "<div>"
+            "<pre><code>def hello():\nprint(\"Hello, world!\")\n</code></pre>"
+            "</div>"
+        )
+        self.assertEqual(html, expected)
+        
+    def test_code_block_with_markdown_symbols(self):
+        md = "```\n# This is a comment\n**bold** _italic_ `code`\n```"
+        node = markdown_to_html_node(md)
+        html = node.to_html()
+        expected = (
+            "<div>"
+            "<pre><code># This is a comment\n**bold** _italic_ `code`\n</code></pre>"
             "</div>"
         )
         self.assertEqual(html, expected)
