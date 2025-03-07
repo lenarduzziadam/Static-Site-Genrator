@@ -1,19 +1,17 @@
 import os
+import shutil
 from textnode import *
 
 def path_to_victory(src, target):
-    static_path = "../static"
-    public_path = "../public"
-    if os.path.exists(static_path):
-        static_files = os.listdir(static_path)
-        for static_entries in static_files:
-            if os.path.isfile(f"{public_path}/{static_entries}"):
-                continue 
-    if os.path.exists(public_path):
-        path_files = os.listdir(public_path)
-        for public_entries in path_files:
-            if os.path.isfile(f"{public_path}/{public_entries}"):
-                continue
+    # First, clean the target directory if it exists
+    if os.path.exists(target):
+        shutil.rmtree(target)
+    
+    # Create a fresh target directory
+    os.mkdir(target)
+    
+    if os.path.exists(src):
+        pass
     
 def main():
     test_node = TextNode("Hello, WwwwwwaWORLD ol son", TextType.BOLD)
