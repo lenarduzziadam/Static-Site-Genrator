@@ -263,6 +263,8 @@ def text_to_children(text):
     inline_nodes = split_nodes_delimiter([text_node], "**", TextType.BOLD)
     inline_nodes = split_nodes_delimiter(inline_nodes, "_", TextType.ITALIC)
     inline_nodes = split_nodes_delimiter(inline_nodes, "`", TextType.CODE)
+    inline_nodes = split_nodes_link(inline_nodes)
+    inline_nodes = split_nodes_image(inline_nodes)
     # Add other delimiters if needed
     
     # Convert each TextNode to HTMLNode
@@ -308,9 +310,7 @@ def markdown_to_html_node(markdown):
     child_node = None
     parent_node = ParentNode("div", [])
     
-    # For debugging
-    with open("debug.txt", "w") as f:
-        f.write(f"Number of blocks: {len(blocked_markdown)}\n")
+ 
     
     #processes each block in markdown    
     for block in blocked_markdown:
