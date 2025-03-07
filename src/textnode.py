@@ -1,4 +1,4 @@
-import re
+import re, os
 from enum import Enum
 
 from htmlnode import *
@@ -387,4 +387,29 @@ def markdown_to_html_node(markdown):
             parent_node.children.append(child_node)
     
     return parent_node
-            
+
+def generate_page(from_path, template_path, dest_path):
+    print(f"Generating page from {from_path} to {dest_path} using {template_path}")
+    
+    with open(from_path, 'r') as opened_file:
+        md_file = opened_file.read()
+
+    with open(template_path, 'r') as open_template:
+        tp_file = open_template.read()
+    
+    html_md = markdown_to_html_node(md_file)
+    new_title = extract_title(md_file)
+    
+   # Replace placeholders and assign updated content
+    updated_content = tp_file.replace("{{ Title }}", new_title).replace("{{ Content }}", html_md.to_html())
+    
+    # Ensure the destination directory exists
+    os.makedirs(os.path.dirname(dest_path), exist_ok=True)
+
+    # Write the updated content to the new HTML file
+    with open(dest_path, 'w') as dest_file:
+        dest_file.write(updated_content)
+    
+    # Print a success message for confirmation
+    print(f"Page successfully generated at {dest_path}")
+    

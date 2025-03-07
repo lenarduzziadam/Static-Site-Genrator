@@ -604,17 +604,17 @@ class TestExtractTitle(unittest.TestCase):
 
         with self.assertRaises(Exception) as context:
             extract_title("No Hash")  # No leading hash
-        self.assertEqual(str(context.exception), "ivalid markdown title format, Ol son")
+        self.assertEqual(str(context.exception), "invalid markdown title format, Ol son")
 
         with self.assertRaises(Exception) as context:
             extract_title("#     ")  # Only space after hash
-        self.assertEqual(str(context.exception), "string cannot be blank")
+        self.assertEqual(str(context.exception), "invalid markdown title format, Ol son")
 
     def test_edge_cases(self):
         # Revised to expect exceptions for blank titles
         with self.assertRaises(Exception) as context:
             extract_title("#    ")  # Blank after hash
-        self.assertEqual(str(context.exception), "string cannot be blank")
+        self.assertEqual(str(context.exception), "invalid markdown title format, Ol son")
         
         # Valid edge case
         self.assertEqual(extract_title("#12345"), "12345")  # Numbers in title
@@ -623,7 +623,7 @@ class TestExtractTitle(unittest.TestCase):
         
         with self.assertRaises(Exception) as context:
             extract_title(" # Leading space before hash")  # Space before hash
-        self.assertEqual(str(context.exception), "ivalid markdown title format, Ol son")
+        self.assertEqual(str(context.exception), "invalid markdown title format, Ol son")
         
     def test_complex_cases(self):
         # Multiple spaced hashes - only one leading # is valid for H1

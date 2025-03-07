@@ -40,10 +40,20 @@ def path_to_victory(src, target):
             # 2. Recursively call this function
             path_to_victory(src_path, target_path)
     
+    
 def main():
+    public_dir = "public"
+    output_file = os.path.join(public_dir, "index.html")
+    content_file = "content/index.md"
+    template_file = "template.html"
+    
     # Use the actual paths you need for your project
     path_to_victory("static", "public")
     print("Static files copied successfully!")
+    
+    #generating Page
+    generate_page(content_file, template_file, output_file)
+    print("page generated in public folder")
     test_node = TextNode("Hello, WwwwwwaWORLD ol son", TextType.BOLD)
     print(test_node)
     

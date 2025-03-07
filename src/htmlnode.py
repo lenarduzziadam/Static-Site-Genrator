@@ -138,13 +138,14 @@ def block_to_block_type(block_text):
 #new function
 def extract_title(markdown):
     if len(markdown) == 0:
-        raise Exception("string cannot be empty") 
-    if not markdown.startswith("#"):
-        raise Exception("ivalid markdown title format, Ol son")
-    
-    sliced_markdown = markdown[1:].strip()
-    
-    if len(sliced_markdown) == 0:
-        raise Exception("string cannot be blank")
-    
-    return sliced_markdown
+        raise Exception("string cannot be empty")
+
+    # Split the markdown into lines and search for a title
+    for line in markdown.split("\n"):
+        if line.startswith("#"):
+            if len(line[1:].strip()) != 0:
+                # Remove the token "#" and strip leading/trailing whitespace
+                return line[1:].strip()
+
+    # If we reach here, no title was found
+    raise Exception("invalid markdown title format, Ol son")
