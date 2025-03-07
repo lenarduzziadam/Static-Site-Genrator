@@ -586,3 +586,69 @@ class TestBlockTypeDetection(unittest.TestCase):
         self.assertEqual(block_to_block_type("``code``"), BlockType.PARAGRAPH)  # Only 2 backticks
         self.assertEqual(block_to_block_type("```code"), BlockType.PARAGRAPH)  # Missing closing backticks
         self.assertEqual(block_to_block_type("code```"), BlockType.PARAGRAPH)  # Missing opening backticks
+   
+        
+class TestExtractTitle(unittest.TestCase):
+    def test_valid_titles(self):
+        # Valid titles with a single hash
+        self.assertEqual(extract_title("# My Title"), "My Title")  # Basic case
+        self.assertEqual(extract_title("#    My Title"), "My Title")  # Leading whitespace
+        self.assertEqual(extract_title("#My Title    "), "My Title")  # Trailing whitespace
+        self.assertEqual(extract_title("# A## Title"), "A## Title")  # Valid markdown content
+
+    def test_invalid_titles(self):
+        # Titles that are empty or invalid
+        with self.assertRaises(Exception) as context:
+            extract_title("")  # Empty string
+        self.assertEqual(str(context.exception), "string cannot be empty")
+
+        with self.assertRaises(Exception) as context:
+            extract_title("No Hash")  # No leading hash
+        self.assertEqual(str(context.exception), "ivalid markdown title format, Ol son")
+
+        with self.assertRaises(Exception) as context:
+            extract_title("#     ")  # Only space after hash
+        self.assertEqual(str(context.exception), "string cannot be blank")
+
+    def test_edge_cases(self):
+        # Revised to expect exceptions for blank titles
+        with self.assertRaises(Exception) as context:
+            extract_title("#    ")  # Blank after hash
+        self.assertEqual(str(context.exception), "string cannot be blank")
+        
+        # Valid edge case
+        self.assertEqual(extract_title("#12345"), "12345")  # Numbers in title
+        self.assertEqual(extract_title("# !@#$%^"), "!@#$%^")  # Symbols in title
+        self.assertEqual(extract_title("# Title with trailing whitespace    "), "Title with trailing whitespace")
+        
+        with self.assertRaises(Exception) as context:
+            extract_title(" # Leading space before hash")  # Space before hash
+        self.assertEqual(str(context.exception), "ivalid markdown title format, Ol son")
+        
+    def test_complex_cases(self):
+        # Multiple spaced hashes - only one leading # is valid for H1
+        self.assertEqual(extract_title("# # Nested hash starts"), "# Nested hash starts")
+        self.assertEqual(extract_title("# ## More nested hashes"), "## More nested hashes")
+
+        # Mixed whitespace around content
+        self.assertEqual(extract_title("#    Nested   whitespace   "), "Nested   whitespace")
+        self.assertEqual(extract_title("# Mixed    Whitespace Around    "), "Mixed    Whitespace Around")
+
+        # Special characters mixed with content
+        self.assertEqual(extract_title("# Title with !@#$%^ symbols"), "Title with !@#$%^ symbols")
+
+        # Unicode titles
+        self.assertEqual(extract_title("# 🎉 Party Time! 🎉"), "🎉 Party Time! 🎉")
+        self.assertEqual(extract_title("# Живей!"), "Живей!")  # Cyrillic
+        self.assertEqual(extract_title("# 我们开始吧!"), "我们开始吧!")  # Chinese characters
+        self.assertEqual(extract_title("# एक नई शुरुआत"), "एक नई शुरुआत")  # Devanagari script
+
+    def test_very_long_titles(self):
+        # Very long title
+        long_title = "This is a really, really, really, #really, really, really, really long title!"
+        self.assertEqual(extract_title(f"# {long_title}"), long_title)
+
+        # Excessively long inputs
+        super_long_title = "A" * 10000
+        self.assertEqual(extract_title(f"# {super_long_title}"), super_long_title)
+
