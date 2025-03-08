@@ -60,10 +60,11 @@ def generate_pages_recursive(dir_path_content, template_path, dest_dir_path):
             
             # Recursive call to process the subdirectory
             generate_pages_recursive(source_path, template_path, dest_subdir)
+            
 def main():
     public_dir = "public"
     output_file = os.path.join(public_dir, "index.html")
-    content_file = "content/index.md"
+    content_file = 'content'
     template_file = "template.html"
     
     # Use the actual paths you need for your project
@@ -71,24 +72,9 @@ def main():
     print("Static files copied successfully!")
     
     #generating Page
-    generate_page(content_file, template_file, output_file)
+    generate_pages_recursive(content_file, template_file, public_dir)
     print("page generated in public folder")
-    
-    blog_dir = "content/blog"
-    for blog_name in ["glorfindel", "tom", "majesty"]:
-        content_file = os.path.join(blog_dir, blog_name, "index.md")
-        # Create the destination directory if it doesn't exist
-        output_dir = os.path.join(public_dir, "blog", blog_name)
-        os.makedirs(output_dir, exist_ok=True)
-        output_group = os.path.join(output_dir, "index.html")
-        generate_page(content_file, template_file, output_group)
-    
-     # Generate contact page
-    contact_content_file = "content/contact/index.md"
-    contact_output_dir = os.path.join(public_dir, "contact")
-    os.makedirs(contact_output_dir, exist_ok=True)
-    contact_output_file = os.path.join(contact_output_dir, "index.html")
-    generate_page(contact_content_file, template_file, contact_output_file)
+
     
     print("All pages generated in public folder")
 
