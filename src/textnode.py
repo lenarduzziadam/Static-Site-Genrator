@@ -65,41 +65,41 @@ def split_nodes_delimiter(old_nodes, delimiter, text_type):
         #assigns text of current node to text
         text = node.text
         
-        #locates the first occurence of the dilimeter in the text
-        start_index = text.find(delimiter)
+        # loop to handle all occurrences of the delimiter in the text
+        while True:
+            # locate the first occurrence of the delimiter in the text
+            start_index = text.find(delimiter)
+
+            # if the delimiter is not found, append the remaining text and break out of the loop
+            if start_index == -1:
+                if text:  # Only add if there's remaining text
+                    result.append(TextNode(text, TextType.TEXT))
+                break
+            
+            # locate the closing delimiter
+            end_index = text.find(delimiter, start_index + len(delimiter))
+
+            # if no closing delimiter, raise an exception
+            if end_index == -1:
+                raise Exception(f"No matching delimiter found for {delimiter}")
         
-        #if the dilimeter is not found then there is nothing to split,
-        #so thus we simply add to the result and move to next iteration
-        if start_index == -1:
-            result.append(node)
-            continue
+            #splitting text in three parts :
+            #   -before_text: text prior to opening dilimiter
+            #   -delimited_text: text between dilimiters (which will also get text type)
+            #   -after_text: text after closing delimiter
+            before_text = text[:start_index]  
+            delimited_text = text[start_index + len(delimiter) :end_index]
+            after_text = text[end_index + len(delimiter):]
         
-        #looks for closing dilimiter which would be after the starting dilimiter searching till the end of the list start_index + (len(delimiter))
-        end_index = text.find(delimiter, start_index + len(delimiter))
+            #creates new text node for each part if not empty
+            if before_text:
+                result.append(TextNode(before_text, TextType.TEXT))
+            if delimited_text:
+                result.append(TextNode(delimited_text, text_type))
+            
+            # update text to the remaining part after the closing delimiter
+            text = after_text
         
-        #if no end_index then raises exception in terminal making note that no delimiter was found, making note of Error in markdown
-        if end_index == -1:
-            raise Exception(f"No matching delimiter found for {delimiter}")
-        
-        #splitting text in three parts :
-        #   -before_text: text prior to opening dilimiter
-        #   -delimited_text: text between dilimiters (which will also get text type)
-        #   -after_text: text after closing delimiter
-        before_text = text[:start_index]  
-        delimited_text = text[start_index + len(delimiter) :end_index]
-        after_text = text[end_index + len(delimiter):]
-        
-        #creates new text node for each part if not empty
-        if before_text:
-            result.append(TextNode(before_text, TextType.TEXT))
-        if delimited_text:
-            result.append(TextNode(delimited_text, text_type))
-        if after_text:
-            result.append(TextNode(after_text, TextType.TEXT))
-        
-        with open("html_output_log.txt", "a") as f:
-            html_node = text_node_to_html_node(node)
-            f.write(str(html_node) + "\n")
         
     return result
 
@@ -402,7 +402,7 @@ def markdown_to_html_node(markdown):
     
     return parent_node
 
-def generate_page(from_path, template_path, dest_path):
+def generate_page(from_path, template_path, dest_path, basepath):
     print(f"Generating page from {from_path} to {dest_path} using {template_path}")
     
     with open(from_path, 'r') as opened_file:
@@ -417,6 +417,9 @@ def generate_page(from_path, template_path, dest_path):
    # Replace placeholders and assign updated content
     updated_content = tp_file.replace("{{ Title }}", new_title).replace("{{ Content }}", html_md.to_html())
     
+    # Replace static paths with basepath
+    updated_content = updated_content.replace('href="/', f'href="{basepath}')
+    updated_content = updated_content.replace('src="/', f'src="{basepath}')
     # Ensure the destination directory exists
     os.makedirs(os.path.dirname(dest_path), exist_ok=True)
 

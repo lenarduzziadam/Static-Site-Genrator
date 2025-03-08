@@ -1,5 +1,5 @@
 import os
-import shutil
+import shutil, sys
 from textnode import *
 
 def path_to_victory(src, target):
@@ -40,9 +40,10 @@ def path_to_victory(src, target):
             # 2. Recursively call this function
             path_to_victory(src_path, target_path)
     
-def generate_pages_recursive(dir_path_content, template_path, dest_dir_path):
+def generate_pages_recursive(dir_path_content, template_path, dest_dir_path, basepath):
     # Ensure the destination directory exists
     os.makedirs(dest_dir_path, exist_ok=True)
+    
     for entry in os.listdir(dir_path_content):
         
         source_path = os.path.join(dir_path_content, entry)
@@ -62,7 +63,7 @@ def generate_pages_recursive(dir_path_content, template_path, dest_dir_path):
             
             print("recursive call utilized")
             # Recursive call to process the subdirectory
-            generate_pages_recursive(source_path, template_path, dest_subdir)
+            generate_pages_recursive(source_path, template_path, dest_subdir, basepath)
             
 def main():
     public_dir = "public"
@@ -70,16 +71,21 @@ def main():
     content_file = 'content'
     template_file = "template.html"
     
+    # Get the basepath from command line arguments or default to "/"
+    basepath = sys.argv[1] if len(sys.argv) > 1 else "/"
+    
     # Use the actual paths you need for your project
     path_to_victory("static", "public")
     print("Static files copied successfully!")
     
     #generating Page
-    generate_pages_recursive(content_file, template_file, public_dir)
+    generate_pages_recursive(content_file, template_file, public_dir, basepath)
+    print(f"Replacing href/src with basepath: {basepath}")
     print("page generated in public folder")
 
     
     print("All pages generated in public folder")
 
 if __name__ == "__main__":
+    
     main()
