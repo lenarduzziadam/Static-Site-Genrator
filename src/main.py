@@ -40,7 +40,26 @@ def path_to_victory(src, target):
             # 2. Recursively call this function
             path_to_victory(src_path, target_path)
     
-    
+def generate_pages_recursive(dir_path_content, template_path, dest_dir_path):
+    # Ensure the destination directory exists
+    os.makedirs(dest_dir_path, exist_ok=True)
+    for entry in os.listdir(dir_path_content):
+        
+        source_path = os.path.join(dir_path_content, entry)
+        if entry.endswith(".md"):
+            # Create destination path (change .md to .html)
+                html_filename = entry[:-3] + ".html"  # Remove .md and add .html
+                dest_path = os.path.join(dest_dir_path, html_filename)
+                
+                generate_page(source_path, template_path, dest_path)
+                
+        elif os.path.isdir(source_path):
+            # If it's a directory, make a recursive call
+            # Create corresponding destination directory path
+            dest_subdir = os.path.join(dest_dir_path, entry)
+            
+            # Recursive call to process the subdirectory
+            generate_pages_recursive(source_path, template_path, dest_subdir)
 def main():
     public_dir = "public"
     output_file = os.path.join(public_dir, "index.html")
@@ -54,10 +73,24 @@ def main():
     #generating Page
     generate_page(content_file, template_file, output_file)
     print("page generated in public folder")
-    test_node = TextNode("Hello, WwwwwwaWORLD ol son", TextType.BOLD)
-    print(test_node)
     
-    return test_node
+    blog_dir = "content/blog"
+    for blog_name in ["glorfindel", "tom", "majesty"]:
+        content_file = os.path.join(blog_dir, blog_name, "index.md")
+        # Create the destination directory if it doesn't exist
+        output_dir = os.path.join(public_dir, "blog", blog_name)
+        os.makedirs(output_dir, exist_ok=True)
+        output_group = os.path.join(output_dir, "index.html")
+        generate_page(content_file, template_file, output_group)
+    
+     # Generate contact page
+    contact_content_file = "content/contact/index.md"
+    contact_output_dir = os.path.join(public_dir, "contact")
+    os.makedirs(contact_output_dir, exist_ok=True)
+    contact_output_file = os.path.join(contact_output_dir, "index.html")
+    generate_page(contact_content_file, template_file, contact_output_file)
+    
+    print("All pages generated in public folder")
 
 if __name__ == "__main__":
     main()
