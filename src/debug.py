@@ -1,5 +1,7 @@
-from textnode import extract_markdown_images
+from textnode import *
 
 # Test the function directly
-result = extract_markdown_images("Image with link-like alt text: ![Here's a [link]](https://example.com/img.png)")
+
+test_node = TextNode("... and **Legolas**, ...", TextType.TEXT)
+result = split_nodes_delimiter([test_node], "**", TextType.BOLD)
 print(result)

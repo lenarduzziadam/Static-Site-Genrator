@@ -53,11 +53,14 @@ def generate_pages_recursive(dir_path_content, template_path, dest_dir_path):
                 
                 generate_page(source_path, template_path, dest_path)
                 
+                print("generated singualar page")
+                
         elif os.path.isdir(source_path):
-            # If it's a directory, make a recursive call
+            # If directory, make recursive call
             # Create corresponding destination directory path
             dest_subdir = os.path.join(dest_dir_path, entry)
             
+            print("recursive call utilized")
             # Recursive call to process the subdirectory
             generate_pages_recursive(source_path, template_path, dest_subdir)
             
