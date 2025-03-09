@@ -33,9 +33,6 @@ class TextNode:
 def text_node_to_html_node(text_node):
     match text_node.text_type:
         case TextType.BOLD:
-            #debug
-            with open("text_node_log.txt", "a") as f:
-                f.write(f"{text_node.text_type}: {text_node.text}\n")
             return LeafNode("b", text_node.text)
         case TextType.TEXT:
             return LeafNode(None, text_node.text)
@@ -283,9 +280,6 @@ def text_to_children(text):
         html_node = text_node_to_html_node(node)
         html_nodes.append(html_node)
     
-    with open("debug_output.txt", "a") as f:  # Open file in append mode
-        for node in html_nodes:
-            f.write(str(node) + "\n")  # Write each node on a new line
     return html_nodes
 
 def parse_quote_block(markdown_text):
