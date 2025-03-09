@@ -1,0 +1,816 @@
+TextType.BOLD: "Váya márië."
+TextType.BOLD: Archmage
+TextType.BOLD: An Unnecessary Interlude
+TextType.BOLD: An Outlier in Purpose
+TextType.BOLD: A Mystery Without Resolution
+TextType.BOLD: A Departure from Tone
+TextType.BOLD: Disruption
+TextType.BOLD: A Shift in Focus
+TextType.BOLD: A Misstep in Continuity
+TextType.BOLD: Glorfindel
+TextType.BOLD: Legolas
+TextType.BOLD: Archmage
+TextType.BOLD: A Noble Sacrifice
+TextType.BOLD: A Victory Remembered
+TextType.BOLD: The Gift of Rebirth
+TextType.BOLD: The Role of a Guide
+TextType.BOLD: Elven Majesty
+TextType.BOLD: Fearless Leadership
+TextType.BOLD: Enduring
+TextType.BOLD: A Historical Touchstone
+TextType.BOLD: A Luminary of Legend
+TextType.BOLD: Archmage
+TextType.BOLD: The Silmarillion
+TextType.BOLD: World-Building
+TextType.BOLD: Diverse Cultures and Languages
+TextType.BOLD: Geographical Realism
+TextType.BOLD: Historical Depth
+TextType.BOLD: Unmatched
+TextType.BOLD: I like Tolkien
+TextType.BOLD: "Váya márië."
+TextType.BOLD: Archmage
+TextType.BOLD: An Unnecessary Interlude
+TextType.BOLD: An Outlier in Purpose
+TextType.BOLD: A Mystery Without Resolution
+TextType.BOLD: A Departure from Tone
+TextType.BOLD: Disruption
+TextType.BOLD: A Shift in Focus
+TextType.BOLD: A Misstep in Continuity
+TextType.BOLD: Glorfindel
+TextType.BOLD: Legolas
+TextType.BOLD: Archmage
+TextType.BOLD: A Noble Sacrifice
+TextType.BOLD: A Victory Remembered
+TextType.BOLD: The Gift of Rebirth
+TextType.BOLD: The Role of a Guide
+TextType.BOLD: Elven Majesty
+TextType.BOLD: Fearless Leadership
+TextType.BOLD: Enduring
+TextType.BOLD: A Historical Touchstone
+TextType.BOLD: A Luminary of Legend
+TextType.BOLD: Archmage
+TextType.BOLD: The Silmarillion
+TextType.BOLD: World-Building
+TextType.BOLD: Diverse Cultures and Languages
+TextType.BOLD: Geographical Realism
+TextType.BOLD: Historical Depth
+TextType.BOLD: Unmatched
+TextType.BOLD: I like Tolkien
+TextType.BOLD: "Váya márië."
+TextType.BOLD: Archmage
+TextType.BOLD: An Unnecessary Interlude
+TextType.BOLD: An Outlier in Purpose
+TextType.BOLD: A Mystery Without Resolution
+TextType.BOLD: A Departure from Tone
+TextType.BOLD: Disruption
+TextType.BOLD: A Shift in Focus
+TextType.BOLD: A Misstep in Continuity
+TextType.BOLD: Glorfindel
+TextType.BOLD: Legolas
+TextType.BOLD: Archmage
+TextType.BOLD: A Noble Sacrifice
+TextType.BOLD: A Victory Remembered
+TextType.BOLD: The Gift of Rebirth
+TextType.BOLD: The Role of a Guide
+TextType.BOLD: Elven Majesty
+TextType.BOLD: Fearless Leadership
+TextType.BOLD: Enduring
+TextType.BOLD: A Historical Touchstone
+TextType.BOLD: A Luminary of Legend
+TextType.BOLD: Archmage
+TextType.BOLD: The Silmarillion
+TextType.BOLD: World-Building
+TextType.BOLD: Diverse Cultures and Languages
+TextType.BOLD: Geographical Realism
+TextType.BOLD: Historical Depth
+TextType.BOLD: Unmatched
+TextType.BOLD: I like Tolkien
+TextType.BOLD: "Váya márië."
+TextType.BOLD: Archmage
+TextType.BOLD: An Unnecessary Interlude
+TextType.BOLD: An Outlier in Purpose
+TextType.BOLD: A Mystery Without Resolution
+TextType.BOLD: A Departure from Tone
+TextType.BOLD: Disruption
+TextType.BOLD: A Shift in Focus
+TextType.BOLD: A Misstep in Continuity
+TextType.BOLD: Glorfindel
+TextType.BOLD: Legolas
+TextType.BOLD: Archmage
+TextType.BOLD: A Noble Sacrifice
+TextType.BOLD: A Victory Remembered
+TextType.BOLD: The Gift of Rebirth
+TextType.BOLD: The Role of a Guide
+TextType.BOLD: Elven Majesty
+TextType.BOLD: Fearless Leadership
+TextType.BOLD: Enduring
+TextType.BOLD: A Historical Touchstone
+TextType.BOLD: A Luminary of Legend
+TextType.BOLD: Archmage
+TextType.BOLD: The Silmarillion
+TextType.BOLD: World-Building
+TextType.BOLD: Diverse Cultures and Languages
+TextType.BOLD: Geographical Realism
+TextType.BOLD: Historical Depth
+TextType.BOLD: Unmatched
+TextType.BOLD: I like Tolkien
+TextType.BOLD: "Váya márië."
+TextType.BOLD: Archmage
+TextType.BOLD: An Unnecessary Interlude
+TextType.BOLD: An Outlier in Purpose
+TextType.BOLD: A Mystery Without Resolution
+TextType.BOLD: A Departure from Tone
+TextType.BOLD: Disruption
+TextType.BOLD: A Shift in Focus
+TextType.BOLD: A Misstep in Continuity
+TextType.BOLD: Glorfindel
+TextType.BOLD: Legolas
+TextType.BOLD: Archmage
+TextType.BOLD: A Noble Sacrifice
+TextType.BOLD: A Victory Remembered
+TextType.BOLD: The Gift of Rebirth
+TextType.BOLD: The Role of a Guide
+TextType.BOLD: Elven Majesty
+TextType.BOLD: Fearless Leadership
+TextType.BOLD: Enduring
+TextType.BOLD: A Historical Touchstone
+TextType.BOLD: A Luminary of Legend
+TextType.BOLD: Archmage
+TextType.BOLD: The Silmarillion
+TextType.BOLD: World-Building
+TextType.BOLD: Diverse Cultures and Languages
+TextType.BOLD: Geographical Realism
+TextType.BOLD: Historical Depth
+TextType.BOLD: Unmatched
+TextType.BOLD: I like Tolkien
+TextType.BOLD: "Váya márië."
+TextType.BOLD: Archmage
+TextType.BOLD: An Unnecessary Interlude
+TextType.BOLD: An Outlier in Purpose
+TextType.BOLD: A Mystery Without Resolution
+TextType.BOLD: A Departure from Tone
+TextType.BOLD: Disruption
+TextType.BOLD: A Shift in Focus
+TextType.BOLD: A Misstep in Continuity
+TextType.BOLD: Glorfindel
+TextType.BOLD: Legolas
+TextType.BOLD: Archmage
+TextType.BOLD: A Noble Sacrifice
+TextType.BOLD: A Victory Remembered
+TextType.BOLD: The Gift of Rebirth
+TextType.BOLD: The Role of a Guide
+TextType.BOLD: Elven Majesty
+TextType.BOLD: Fearless Leadership
+TextType.BOLD: Enduring
+TextType.BOLD: A Historical Touchstone
+TextType.BOLD: A Luminary of Legend
+TextType.BOLD: Archmage
+TextType.BOLD: The Silmarillion
+TextType.BOLD: World-Building
+TextType.BOLD: Diverse Cultures and Languages
+TextType.BOLD: Geographical Realism
+TextType.BOLD: Historical Depth
+TextType.BOLD: Unmatched
+TextType.BOLD: I like Tolkien
+TextType.BOLD: "Váya márië."
+TextType.BOLD: Archmage
+TextType.BOLD: An Unnecessary Interlude
+TextType.BOLD: An Outlier in Purpose
+TextType.BOLD: A Mystery Without Resolution
+TextType.BOLD: A Departure from Tone
+TextType.BOLD: Disruption
+TextType.BOLD: A Shift in Focus
+TextType.BOLD: A Misstep in Continuity
+TextType.BOLD: Glorfindel
+TextType.BOLD: Legolas
+TextType.BOLD: Archmage
+TextType.BOLD: A Noble Sacrifice
+TextType.BOLD: A Victory Remembered
+TextType.BOLD: The Gift of Rebirth
+TextType.BOLD: The Role of a Guide
+TextType.BOLD: Elven Majesty
+TextType.BOLD: Fearless Leadership
+TextType.BOLD: Enduring
+TextType.BOLD: A Historical Touchstone
+TextType.BOLD: A Luminary of Legend
+TextType.BOLD: Archmage
+TextType.BOLD: The Silmarillion
+TextType.BOLD: World-Building
+TextType.BOLD: Diverse Cultures and Languages
+TextType.BOLD: Geographical Realism
+TextType.BOLD: Historical Depth
+TextType.BOLD: Unmatched
+TextType.BOLD: I like Tolkien
+TextType.BOLD: "Váya márië."
+TextType.BOLD: "Váya márië."
+TextType.BOLD: "Váya márië."
+TextType.BOLD: "Váya márië."
+TextType.BOLD: "Váya márië."
+TextType.BOLD: Archmage
+TextType.BOLD: An Unnecessary Interlude
+TextType.BOLD: An Outlier in Purpose
+TextType.BOLD: A Mystery Without Resolution
+TextType.BOLD: A Departure from Tone
+TextType.BOLD: Disruption
+TextType.BOLD: A Shift in Focus
+TextType.BOLD: A Misstep in Continuity
+TextType.BOLD: Glorfindel
+TextType.BOLD: Legolas
+TextType.BOLD: Archmage
+TextType.BOLD: A Noble Sacrifice
+TextType.BOLD: A Victory Remembered
+TextType.BOLD: The Gift of Rebirth
+TextType.BOLD: The Role of a Guide
+TextType.BOLD: Elven Majesty
+TextType.BOLD: Fearless Leadership
+TextType.BOLD: Enduring
+TextType.BOLD: A Historical Touchstone
+TextType.BOLD: A Luminary of Legend
+TextType.BOLD: Archmage
+TextType.BOLD: The Silmarillion
+TextType.BOLD: World-Building
+TextType.BOLD: Diverse Cultures and Languages
+TextType.BOLD: Geographical Realism
+TextType.BOLD: Historical Depth
+TextType.BOLD: Unmatched
+TextType.BOLD: I like Tolkien
+TextType.BOLD: "Váya márië."
+TextType.BOLD: Archmage
+TextType.BOLD: An Unnecessary Interlude
+TextType.BOLD: An Outlier in Purpose
+TextType.BOLD: A Mystery Without Resolution
+TextType.BOLD: A Departure from Tone
+TextType.BOLD: Disruption
+TextType.BOLD: A Shift in Focus
+TextType.BOLD: A Misstep in Continuity
+TextType.BOLD: Glorfindel
+TextType.BOLD: Legolas
+TextType.BOLD: Archmage
+TextType.BOLD: A Noble Sacrifice
+TextType.BOLD: A Victory Remembered
+TextType.BOLD: The Gift of Rebirth
+TextType.BOLD: The Role of a Guide
+TextType.BOLD: Elven Majesty
+TextType.BOLD: Fearless Leadership
+TextType.BOLD: Enduring
+TextType.BOLD: A Historical Touchstone
+TextType.BOLD: A Luminary of Legend
+TextType.BOLD: Archmage
+TextType.BOLD: The Silmarillion
+TextType.BOLD: World-Building
+TextType.BOLD: Diverse Cultures and Languages
+TextType.BOLD: Geographical Realism
+TextType.BOLD: Historical Depth
+TextType.BOLD: Unmatched
+TextType.BOLD: I like Tolkien
+TextType.BOLD: "Váya márië."
+TextType.BOLD: Archmage
+TextType.BOLD: An Unnecessary Interlude
+TextType.BOLD: An Outlier in Purpose
+TextType.BOLD: A Mystery Without Resolution
+TextType.BOLD: A Departure from Tone
+TextType.BOLD: Disruption
+TextType.BOLD: A Shift in Focus
+TextType.BOLD: A Misstep in Continuity
+TextType.BOLD: Glorfindel
+TextType.BOLD: Legolas
+TextType.BOLD: Archmage
+TextType.BOLD: A Noble Sacrifice
+TextType.BOLD: A Victory Remembered
+TextType.BOLD: The Gift of Rebirth
+TextType.BOLD: The Role of a Guide
+TextType.BOLD: Elven Majesty
+TextType.BOLD: Fearless Leadership
+TextType.BOLD: Enduring
+TextType.BOLD: A Historical Touchstone
+TextType.BOLD: A Luminary of Legend
+TextType.BOLD: Archmage
+TextType.BOLD: The Silmarillion
+TextType.BOLD: World-Building
+TextType.BOLD: Diverse Cultures and Languages
+TextType.BOLD: Geographical Realism
+TextType.BOLD: Historical Depth
+TextType.BOLD: Unmatched
+TextType.BOLD: I like Tolkien
+TextType.BOLD: "Váya márië."
+TextType.BOLD: Archmage
+TextType.BOLD: An Unnecessary Interlude
+TextType.BOLD: An Outlier in Purpose
+TextType.BOLD: A Mystery Without Resolution
+TextType.BOLD: A Departure from Tone
+TextType.BOLD: Disruption
+TextType.BOLD: A Shift in Focus
+TextType.BOLD: A Misstep in Continuity
+TextType.BOLD: Glorfindel
+TextType.BOLD: Legolas
+TextType.BOLD: Archmage
+TextType.BOLD: A Noble Sacrifice
+TextType.BOLD: A Victory Remembered
+TextType.BOLD: The Gift of Rebirth
+TextType.BOLD: The Role of a Guide
+TextType.BOLD: Elven Majesty
+TextType.BOLD: Fearless Leadership
+TextType.BOLD: Enduring
+TextType.BOLD: A Historical Touchstone
+TextType.BOLD: A Luminary of Legend
+TextType.BOLD: Archmage
+TextType.BOLD: The Silmarillion
+TextType.BOLD: World-Building
+TextType.BOLD: Diverse Cultures and Languages
+TextType.BOLD: Geographical Realism
+TextType.BOLD: Historical Depth
+TextType.BOLD: Unmatched
+TextType.BOLD: I like Tolkien
+TextType.BOLD: "Váya márië."
+TextType.BOLD: Archmage
+TextType.BOLD: An Unnecessary Interlude
+TextType.BOLD: An Outlier in Purpose
+TextType.BOLD: A Mystery Without Resolution
+TextType.BOLD: A Departure from Tone
+TextType.BOLD: Disruption
+TextType.BOLD: A Shift in Focus
+TextType.BOLD: A Misstep in Continuity
+TextType.BOLD: Glorfindel
+TextType.BOLD: Legolas
+TextType.BOLD: Archmage
+TextType.BOLD: A Noble Sacrifice
+TextType.BOLD: A Victory Remembered
+TextType.BOLD: The Gift of Rebirth
+TextType.BOLD: The Role of a Guide
+TextType.BOLD: Elven Majesty
+TextType.BOLD: Fearless Leadership
+TextType.BOLD: Enduring
+TextType.BOLD: A Historical Touchstone
+TextType.BOLD: A Luminary of Legend
+TextType.BOLD: Archmage
+TextType.BOLD: The Silmarillion
+TextType.BOLD: World-Building
+TextType.BOLD: Diverse Cultures and Languages
+TextType.BOLD: Geographical Realism
+TextType.BOLD: Historical Depth
+TextType.BOLD: Unmatched
+TextType.BOLD: I like Tolkien
+TextType.BOLD: "Váya márië."
+TextType.BOLD: Archmage
+TextType.BOLD: An Unnecessary Interlude
+TextType.BOLD: An Outlier in Purpose
+TextType.BOLD: A Mystery Without Resolution
+TextType.BOLD: A Departure from Tone
+TextType.BOLD: Disruption
+TextType.BOLD: A Shift in Focus
+TextType.BOLD: A Misstep in Continuity
+TextType.BOLD: Glorfindel
+TextType.BOLD: Legolas
+TextType.BOLD: Archmage
+TextType.BOLD: A Noble Sacrifice
+TextType.BOLD: A Victory Remembered
+TextType.BOLD: The Gift of Rebirth
+TextType.BOLD: The Role of a Guide
+TextType.BOLD: Elven Majesty
+TextType.BOLD: Fearless Leadership
+TextType.BOLD: Enduring
+TextType.BOLD: A Historical Touchstone
+TextType.BOLD: A Luminary of Legend
+TextType.BOLD: Archmage
+TextType.BOLD: The Silmarillion
+TextType.BOLD: World-Building
+TextType.BOLD: Diverse Cultures and Languages
+TextType.BOLD: Geographical Realism
+TextType.BOLD: Historical Depth
+TextType.BOLD: Unmatched
+TextType.BOLD: I like Tolkien
+TextType.BOLD: "Váya márië."
+TextType.BOLD: Archmage
+TextType.BOLD: An Unnecessary Interlude
+TextType.BOLD: An Outlier in Purpose
+TextType.BOLD: A Mystery Without Resolution
+TextType.BOLD: A Departure from Tone
+TextType.BOLD: Disruption
+TextType.BOLD: A Shift in Focus
+TextType.BOLD: A Misstep in Continuity
+TextType.BOLD: Glorfindel
+TextType.BOLD: Legolas
+TextType.BOLD: Archmage
+TextType.BOLD: A Noble Sacrifice
+TextType.BOLD: A Victory Remembered
+TextType.BOLD: The Gift of Rebirth
+TextType.BOLD: The Role of a Guide
+TextType.BOLD: Elven Majesty
+TextType.BOLD: Fearless Leadership
+TextType.BOLD: Enduring
+TextType.BOLD: A Historical Touchstone
+TextType.BOLD: A Luminary of Legend
+TextType.BOLD: Archmage
+TextType.BOLD: The Silmarillion
+TextType.BOLD: World-Building
+TextType.BOLD: Diverse Cultures and Languages
+TextType.BOLD: Geographical Realism
+TextType.BOLD: Historical Depth
+TextType.BOLD: Unmatched
+TextType.BOLD: I like Tolkien
+TextType.BOLD: "Váya márië."
+TextType.BOLD: Archmage
+TextType.BOLD: An Unnecessary Interlude
+TextType.BOLD: An Outlier in Purpose
+TextType.BOLD: A Mystery Without Resolution
+TextType.BOLD: A Departure from Tone
+TextType.BOLD: Disruption
+TextType.BOLD: A Shift in Focus
+TextType.BOLD: A Misstep in Continuity
+TextType.BOLD: Glorfindel
+TextType.BOLD: Legolas
+TextType.BOLD: Archmage
+TextType.BOLD: A Noble Sacrifice
+TextType.BOLD: A Victory Remembered
+TextType.BOLD: The Gift of Rebirth
+TextType.BOLD: The Role of a Guide
+TextType.BOLD: Elven Majesty
+TextType.BOLD: Fearless Leadership
+TextType.BOLD: Enduring
+TextType.BOLD: A Historical Touchstone
+TextType.BOLD: A Luminary of Legend
+TextType.BOLD: Archmage
+TextType.BOLD: The Silmarillion
+TextType.BOLD: World-Building
+TextType.BOLD: Diverse Cultures and Languages
+TextType.BOLD: Geographical Realism
+TextType.BOLD: Historical Depth
+TextType.BOLD: Unmatched
+TextType.BOLD: I like Tolkien
+TextType.BOLD: "Váya márië."
+TextType.BOLD: Archmage
+TextType.BOLD: An Unnecessary Interlude
+TextType.BOLD: An Outlier in Purpose
+TextType.BOLD: A Mystery Without Resolution
+TextType.BOLD: A Departure from Tone
+TextType.BOLD: Disruption
+TextType.BOLD: A Shift in Focus
+TextType.BOLD: A Misstep in Continuity
+TextType.BOLD: Glorfindel
+TextType.BOLD: Legolas
+TextType.BOLD: Archmage
+TextType.BOLD: A Noble Sacrifice
+TextType.BOLD: A Victory Remembered
+TextType.BOLD: The Gift of Rebirth
+TextType.BOLD: The Role of a Guide
+TextType.BOLD: Elven Majesty
+TextType.BOLD: Fearless Leadership
+TextType.BOLD: Enduring
+TextType.BOLD: A Historical Touchstone
+TextType.BOLD: A Luminary of Legend
+TextType.BOLD: Archmage
+TextType.BOLD: The Silmarillion
+TextType.BOLD: World-Building
+TextType.BOLD: Diverse Cultures and Languages
+TextType.BOLD: Geographical Realism
+TextType.BOLD: Historical Depth
+TextType.BOLD: Unmatched
+TextType.BOLD: I like Tolkien
+TextType.BOLD: "Váya márië."
+TextType.BOLD: Archmage
+TextType.BOLD: An Unnecessary Interlude
+TextType.BOLD: An Outlier in Purpose
+TextType.BOLD: A Mystery Without Resolution
+TextType.BOLD: A Departure from Tone
+TextType.BOLD: Disruption
+TextType.BOLD: A Shift in Focus
+TextType.BOLD: A Misstep in Continuity
+TextType.BOLD: Glorfindel
+TextType.BOLD: Legolas
+TextType.BOLD: Archmage
+TextType.BOLD: A Noble Sacrifice
+TextType.BOLD: A Victory Remembered
+TextType.BOLD: The Gift of Rebirth
+TextType.BOLD: The Role of a Guide
+TextType.BOLD: Elven Majesty
+TextType.BOLD: Fearless Leadership
+TextType.BOLD: Enduring
+TextType.BOLD: A Historical Touchstone
+TextType.BOLD: A Luminary of Legend
+TextType.BOLD: Archmage
+TextType.BOLD: The Silmarillion
+TextType.BOLD: World-Building
+TextType.BOLD: Diverse Cultures and Languages
+TextType.BOLD: Geographical Realism
+TextType.BOLD: Historical Depth
+TextType.BOLD: Unmatched
+TextType.BOLD: I like Tolkien
+TextType.BOLD: "Váya márië."
+TextType.BOLD: Archmage
+TextType.BOLD: An Unnecessary Interlude
+TextType.BOLD: An Outlier in Purpose
+TextType.BOLD: A Mystery Without Resolution
+TextType.BOLD: A Departure from Tone
+TextType.BOLD: Disruption
+TextType.BOLD: A Shift in Focus
+TextType.BOLD: A Misstep in Continuity
+TextType.BOLD: Glorfindel
+TextType.BOLD: Legolas
+TextType.BOLD: Archmage
+TextType.BOLD: A Noble Sacrifice
+TextType.BOLD: A Victory Remembered
+TextType.BOLD: The Gift of Rebirth
+TextType.BOLD: The Role of a Guide
+TextType.BOLD: Elven Majesty
+TextType.BOLD: Fearless Leadership
+TextType.BOLD: Enduring
+TextType.BOLD: A Historical Touchstone
+TextType.BOLD: A Luminary of Legend
+TextType.BOLD: Archmage
+TextType.BOLD: The Silmarillion
+TextType.BOLD: World-Building
+TextType.BOLD: Diverse Cultures and Languages
+TextType.BOLD: Geographical Realism
+TextType.BOLD: Historical Depth
+TextType.BOLD: Unmatched
+TextType.BOLD: I like Tolkien
+TextType.BOLD: "Váya márië."
+TextType.BOLD: Archmage
+TextType.BOLD: An Unnecessary Interlude
+TextType.BOLD: An Outlier in Purpose
+TextType.BOLD: A Mystery Without Resolution
+TextType.BOLD: A Departure from Tone
+TextType.BOLD: Disruption
+TextType.BOLD: A Shift in Focus
+TextType.BOLD: A Misstep in Continuity
+TextType.BOLD: Glorfindel
+TextType.BOLD: Legolas
+TextType.BOLD: Archmage
+TextType.BOLD: A Noble Sacrifice
+TextType.BOLD: A Victory Remembered
+TextType.BOLD: The Gift of Rebirth
+TextType.BOLD: The Role of a Guide
+TextType.BOLD: Elven Majesty
+TextType.BOLD: Fearless Leadership
+TextType.BOLD: Enduring
+TextType.BOLD: A Historical Touchstone
+TextType.BOLD: A Luminary of Legend
+TextType.BOLD: Archmage
+TextType.BOLD: The Silmarillion
+TextType.BOLD: World-Building
+TextType.BOLD: Diverse Cultures and Languages
+TextType.BOLD: Geographical Realism
+TextType.BOLD: Historical Depth
+TextType.BOLD: Unmatched
+TextType.BOLD: I like Tolkien
+TextType.BOLD: "Váya márië."
+TextType.BOLD: Archmage
+TextType.BOLD: An Unnecessary Interlude
+TextType.BOLD: An Outlier in Purpose
+TextType.BOLD: A Mystery Without Resolution
+TextType.BOLD: A Departure from Tone
+TextType.BOLD: Disruption
+TextType.BOLD: A Shift in Focus
+TextType.BOLD: A Misstep in Continuity
+TextType.BOLD: Glorfindel
+TextType.BOLD: Legolas
+TextType.BOLD: Archmage
+TextType.BOLD: A Noble Sacrifice
+TextType.BOLD: A Victory Remembered
+TextType.BOLD: The Gift of Rebirth
+TextType.BOLD: The Role of a Guide
+TextType.BOLD: Elven Majesty
+TextType.BOLD: Fearless Leadership
+TextType.BOLD: Enduring
+TextType.BOLD: A Historical Touchstone
+TextType.BOLD: A Luminary of Legend
+TextType.BOLD: Archmage
+TextType.BOLD: The Silmarillion
+TextType.BOLD: World-Building
+TextType.BOLD: Diverse Cultures and Languages
+TextType.BOLD: Geographical Realism
+TextType.BOLD: Historical Depth
+TextType.BOLD: Unmatched
+TextType.BOLD: I like Tolkien
+TextType.BOLD: "Váya márië."
+TextType.BOLD: Archmage
+TextType.BOLD: An Unnecessary Interlude
+TextType.BOLD: An Outlier in Purpose
+TextType.BOLD: A Mystery Without Resolution
+TextType.BOLD: A Departure from Tone
+TextType.BOLD: Disruption
+TextType.BOLD: A Shift in Focus
+TextType.BOLD: A Misstep in Continuity
+TextType.BOLD: Glorfindel
+TextType.BOLD: Legolas
+TextType.BOLD: Archmage
+TextType.BOLD: A Noble Sacrifice
+TextType.BOLD: A Victory Remembered
+TextType.BOLD: The Gift of Rebirth
+TextType.BOLD: The Role of a Guide
+TextType.BOLD: Elven Majesty
+TextType.BOLD: Fearless Leadership
+TextType.BOLD: Enduring
+TextType.BOLD: A Historical Touchstone
+TextType.BOLD: A Luminary of Legend
+TextType.BOLD: Archmage
+TextType.BOLD: The Silmarillion
+TextType.BOLD: World-Building
+TextType.BOLD: Diverse Cultures and Languages
+TextType.BOLD: Geographical Realism
+TextType.BOLD: Historical Depth
+TextType.BOLD: Unmatched
+TextType.BOLD: I like Tolkien
+TextType.BOLD: "Váya márië."
+TextType.BOLD: Archmage
+TextType.BOLD: An Unnecessary Interlude
+TextType.BOLD: An Outlier in Purpose
+TextType.BOLD: A Mystery Without Resolution
+TextType.BOLD: A Departure from Tone
+TextType.BOLD: Disruption
+TextType.BOLD: A Shift in Focus
+TextType.BOLD: A Misstep in Continuity
+TextType.BOLD: Glorfindel
+TextType.BOLD: Legolas
+TextType.BOLD: Archmage
+TextType.BOLD: A Noble Sacrifice
+TextType.BOLD: A Victory Remembered
+TextType.BOLD: The Gift of Rebirth
+TextType.BOLD: The Role of a Guide
+TextType.BOLD: Elven Majesty
+TextType.BOLD: Fearless Leadership
+TextType.BOLD: Enduring
+TextType.BOLD: A Historical Touchstone
+TextType.BOLD: A Luminary of Legend
+TextType.BOLD: Archmage
+TextType.BOLD: The Silmarillion
+TextType.BOLD: World-Building
+TextType.BOLD: Diverse Cultures and Languages
+TextType.BOLD: Geographical Realism
+TextType.BOLD: Historical Depth
+TextType.BOLD: Unmatched
+TextType.BOLD: I like Tolkien
+TextType.BOLD: "Váya márië."
+TextType.BOLD: Archmage
+TextType.BOLD: An Unnecessary Interlude
+TextType.BOLD: An Outlier in Purpose
+TextType.BOLD: A Mystery Without Resolution
+TextType.BOLD: A Departure from Tone
+TextType.BOLD: Disruption
+TextType.BOLD: A Shift in Focus
+TextType.BOLD: A Misstep in Continuity
+TextType.BOLD: Glorfindel
+TextType.BOLD: Legolas
+TextType.BOLD: Archmage
+TextType.BOLD: A Noble Sacrifice
+TextType.BOLD: A Victory Remembered
+TextType.BOLD: The Gift of Rebirth
+TextType.BOLD: The Role of a Guide
+TextType.BOLD: Elven Majesty
+TextType.BOLD: Fearless Leadership
+TextType.BOLD: Enduring
+TextType.BOLD: A Historical Touchstone
+TextType.BOLD: A Luminary of Legend
+TextType.BOLD: Archmage
+TextType.BOLD: The Silmarillion
+TextType.BOLD: World-Building
+TextType.BOLD: Diverse Cultures and Languages
+TextType.BOLD: Geographical Realism
+TextType.BOLD: Historical Depth
+TextType.BOLD: Unmatched
+TextType.BOLD: I like Tolkien
+TextType.BOLD: "Váya márië."
+TextType.BOLD: Archmage
+TextType.BOLD: An Unnecessary Interlude
+TextType.BOLD: An Outlier in Purpose
+TextType.BOLD: A Mystery Without Resolution
+TextType.BOLD: A Departure from Tone
+TextType.BOLD: Disruption
+TextType.BOLD: A Shift in Focus
+TextType.BOLD: A Misstep in Continuity
+TextType.BOLD: Glorfindel
+TextType.BOLD: Legolas
+TextType.BOLD: Archmage
+TextType.BOLD: A Noble Sacrifice
+TextType.BOLD: A Victory Remembered
+TextType.BOLD: The Gift of Rebirth
+TextType.BOLD: The Role of a Guide
+TextType.BOLD: Elven Majesty
+TextType.BOLD: Fearless Leadership
+TextType.BOLD: Enduring
+TextType.BOLD: A Historical Touchstone
+TextType.BOLD: A Luminary of Legend
+TextType.BOLD: Archmage
+TextType.BOLD: The Silmarillion
+TextType.BOLD: World-Building
+TextType.BOLD: Diverse Cultures and Languages
+TextType.BOLD: Geographical Realism
+TextType.BOLD: Historical Depth
+TextType.BOLD: Unmatched
+TextType.BOLD: I like Tolkien
+TextType.BOLD: "Váya márië."
+TextType.BOLD: Archmage
+TextType.BOLD: An Unnecessary Interlude
+TextType.BOLD: An Outlier in Purpose
+TextType.BOLD: A Mystery Without Resolution
+TextType.BOLD: A Departure from Tone
+TextType.BOLD: Disruption
+TextType.BOLD: A Shift in Focus
+TextType.BOLD: A Misstep in Continuity
+TextType.BOLD: Glorfindel
+TextType.BOLD: Legolas
+TextType.BOLD: Archmage
+TextType.BOLD: A Noble Sacrifice
+TextType.BOLD: A Victory Remembered
+TextType.BOLD: The Gift of Rebirth
+TextType.BOLD: The Role of a Guide
+TextType.BOLD: Elven Majesty
+TextType.BOLD: Fearless Leadership
+TextType.BOLD: Enduring
+TextType.BOLD: A Historical Touchstone
+TextType.BOLD: A Luminary of Legend
+TextType.BOLD: Archmage
+TextType.BOLD: The Silmarillion
+TextType.BOLD: World-Building
+TextType.BOLD: Diverse Cultures and Languages
+TextType.BOLD: Geographical Realism
+TextType.BOLD: Historical Depth
+TextType.BOLD: Unmatched
+TextType.BOLD: I like Tolkien
+TextType.BOLD: "Váya márië."
+TextType.BOLD: Archmage
+TextType.BOLD: An Unnecessary Interlude
+TextType.BOLD: An Outlier in Purpose
+TextType.BOLD: A Mystery Without Resolution
+TextType.BOLD: A Departure from Tone
+TextType.BOLD: Disruption
+TextType.BOLD: A Shift in Focus
+TextType.BOLD: A Misstep in Continuity
+TextType.BOLD: Glorfindel
+TextType.BOLD: Legolas
+TextType.BOLD: Archmage
+TextType.BOLD: A Noble Sacrifice
+TextType.BOLD: A Victory Remembered
+TextType.BOLD: The Gift of Rebirth
+TextType.BOLD: The Role of a Guide
+TextType.BOLD: Elven Majesty
+TextType.BOLD: Fearless Leadership
+TextType.BOLD: Enduring
+TextType.BOLD: A Historical Touchstone
+TextType.BOLD: A Luminary of Legend
+TextType.BOLD: Archmage
+TextType.BOLD: The Silmarillion
+TextType.BOLD: World-Building
+TextType.BOLD: Diverse Cultures and Languages
+TextType.BOLD: Geographical Realism
+TextType.BOLD: Historical Depth
+TextType.BOLD: Unmatched
+TextType.BOLD: I like Tolkien
+TextType.BOLD: "Váya márië."
+TextType.BOLD: Archmage
+TextType.BOLD: An Unnecessary Interlude
+TextType.BOLD: An Outlier in Purpose
+TextType.BOLD: A Mystery Without Resolution
+TextType.BOLD: A Departure from Tone
+TextType.BOLD: Disruption
+TextType.BOLD: A Shift in Focus
+TextType.BOLD: A Misstep in Continuity
+TextType.BOLD: Glorfindel
+TextType.BOLD: Legolas
+TextType.BOLD: Archmage
+TextType.BOLD: A Noble Sacrifice
+TextType.BOLD: A Victory Remembered
+TextType.BOLD: The Gift of Rebirth
+TextType.BOLD: The Role of a Guide
+TextType.BOLD: Elven Majesty
+TextType.BOLD: Fearless Leadership
+TextType.BOLD: Enduring
+TextType.BOLD: A Historical Touchstone
+TextType.BOLD: A Luminary of Legend
+TextType.BOLD: Archmage
+TextType.BOLD: The Silmarillion
+TextType.BOLD: World-Building
+TextType.BOLD: Diverse Cultures and Languages
+TextType.BOLD: Geographical Realism
+TextType.BOLD: Historical Depth
+TextType.BOLD: Unmatched
+TextType.BOLD: I like Tolkien
+TextType.BOLD: "Váya márië."
+TextType.BOLD: Archmage
+TextType.BOLD: An Unnecessary Interlude
+TextType.BOLD: An Outlier in Purpose
+TextType.BOLD: A Mystery Without Resolution
+TextType.BOLD: A Departure from Tone
+TextType.BOLD: Disruption
+TextType.BOLD: A Shift in Focus
+TextType.BOLD: A Misstep in Continuity
+TextType.BOLD: Glorfindel
+TextType.BOLD: Legolas
+TextType.BOLD: Archmage
+TextType.BOLD: A Noble Sacrifice
+TextType.BOLD: A Victory Remembered
+TextType.BOLD: The Gift of Rebirth
+TextType.BOLD: The Role of a Guide
+TextType.BOLD: Elven Majesty
+TextType.BOLD: Fearless Leadership
+TextType.BOLD: Enduring
+TextType.BOLD: A Historical Touchstone
+TextType.BOLD: A Luminary of Legend
+TextType.BOLD: Archmage
+TextType.BOLD: The Silmarillion
+TextType.BOLD: World-Building
+TextType.BOLD: Diverse Cultures and Languages
+TextType.BOLD: Geographical Realism
+TextType.BOLD: Historical Depth
+TextType.BOLD: Unmatched
+TextType.BOLD: I like Tolkien
