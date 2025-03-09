@@ -268,12 +268,11 @@ def text_to_children(text):
     
     # Split the node to process inline markdown
     inline_nodes = split_nodes_delimiter([text_node], "**", TextType.BOLD)
-    with open("debug_split_nodes.txt", "a") as f:
-        f.write(f"After BOLD: {inline_nodes}\n")
-        inline_nodes = split_nodes_delimiter(inline_nodes, "_", TextType.ITALIC)
-        f.write(f"After ITALIC: {inline_nodes}\n")
-        inline_nodes = split_nodes_delimiter(inline_nodes, "`", TextType.CODE)
-        f.write(f"After CODE: {inline_nodes}\n")
+    
+    inline_nodes = split_nodes_delimiter(inline_nodes, "_", TextType.ITALIC)
+        
+    inline_nodes = split_nodes_delimiter(inline_nodes, "`", TextType.CODE)
+        
     inline_nodes = split_nodes_link(inline_nodes)
     inline_nodes = split_nodes_image(inline_nodes)
     # Add other delimiters if needed
@@ -401,7 +400,7 @@ def markdown_to_html_node(markdown):
             parent_node.children.append(child_node)
     
     return parent_node
-
+tempstring = """"
 def generate_page(from_path, template_path, dest_path, basepath):
     print(f"Generating page from {from_path} to {dest_path} using {template_path}")
     
@@ -417,16 +416,51 @@ def generate_page(from_path, template_path, dest_path, basepath):
    # Replace placeholders and assign updated content
     updated_content = tp_file.replace("{{ Title }}", new_title).replace("{{ Content }}", html_md.to_html())
     
+    print(f"Basepath being applied: {basepath}")
     # Replace static paths with basepath
-    updated_content = updated_content.replace('href="/', f'href="{basepath}')
-    updated_content = updated_content.replace('src="/', f'src="{basepath}')
+    # Add basepath to href and src links
+    # Replace static paths with basepath
+    final = updated_content.replace('href="/', f'href="{basepath}').replace('src="/', f'src="{basepath}')
+
     # Ensure the destination directory exists
     os.makedirs(os.path.dirname(dest_path), exist_ok=True)
 
     # Write the updated content to the new HTML file
     with open(dest_path, 'w') as dest_file:
-        dest_file.write(updated_content)
+        dest_file.write(final)
     
     # Print a success message for confirmation
+    print(f"Page successfully generated at {dest_path}")
+    """
+def generate_page(from_path, template_path, dest_path, basepath):
+    print(f"Generating page from {from_path} to {dest_path} using {template_path}")
+    
+    # Read the markdown file
+    with open(from_path, 'r') as opened_file:
+        md_file = opened_file.read()
+
+    # Read the HTML template
+    with open(template_path, 'r') as open_template:
+        tp_file = open_template.read()
+    
+    # Convert markdown to HTML and extract the title
+    html_md = markdown_to_html_node(md_file)
+    new_title = extract_title(md_file)
+    
+    # Replace placeholders for Title and Content
+    updated_content = tp_file.replace("{{ Title }}", new_title).replace("{{ Content }}", html_md.to_html())
+    
+    # Adjust paths for `basepath` to handle `href` and `src` attributes dynamically
+    final_output = updated_content.replace('href="/', f'href="{basepath}') \
+                                  .replace('src="/', f'src="{basepath}')
+    
+    # Ensure the destination directory exists
+    os.makedirs(os.path.dirname(dest_path), exist_ok=True)
+
+    # Write the final updated content to the destination file
+    with open(dest_path, 'w') as dest_file:
+        dest_file.write(final_output)
+    
+    # Print a success message confirming the generation
     print(f"Page successfully generated at {dest_path}")
     

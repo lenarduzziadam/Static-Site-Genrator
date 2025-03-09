@@ -39,11 +39,39 @@ def path_to_victory(src, target):
             # 1. Create the directory in the target
             # 2. Recursively call this function
             path_to_victory(src_path, target_path)
-    
+        
+        tempstring = """""
 def generate_pages_recursive(dir_path_content, template_path, dest_dir_path, basepath):
     # Ensure the destination directory exists
     os.makedirs(dest_dir_path, exist_ok=True)
     
+    for entry in os.listdir(dir_path_content):
+        
+        print(f"Entry: {entry}") 
+        source_path = os.path.join(dir_path_content, entry)
+        print(f" source path{source_path}")
+        if entry.endswith(".md"):
+            # Create destination path (change .md to .html)
+                html_filename = entry[:-3] + ".html"  # Remove .md and add .html
+                dest_path = os.path.join(dest_dir_path, html_filename)
+                
+                generate_page(source_path, template_path, dest_path, basepath)
+                
+                print("generated singualar page")
+                
+        elif os.path.isdir(source_path):
+            # If directory, make recursive call
+            # Create corresponding destination directory path
+            dest_subdir = os.path.join(dest_dir_path, entry)
+            print(f" post loop Recursing into: {source_path} -> {dest_subdir}")
+            print("recursive call utilized")
+            # Recursive call to process the subdirectory
+            generate_pages_recursive(source_path, template_path, dest_subdir, basepath)
+            """
+            
+def generate_pages_recursive(dir_path_content, template_path, dest_dir_path, basepath):
+    # Ensure the destination directory exists
+    os.makedirs(dest_dir_path, exist_ok=True)
     for entry in os.listdir(dir_path_content):
         
         source_path = os.path.join(dir_path_content, entry)
@@ -52,7 +80,7 @@ def generate_pages_recursive(dir_path_content, template_path, dest_dir_path, bas
                 html_filename = entry[:-3] + ".html"  # Remove .md and add .html
                 dest_path = os.path.join(dest_dir_path, html_filename)
                 
-                generate_page(source_path, template_path, dest_path)
+                generate_page(source_path, template_path, dest_path, basepath)
                 
                 print("generated singualar page")
                 
@@ -62,30 +90,29 @@ def generate_pages_recursive(dir_path_content, template_path, dest_dir_path, bas
             dest_subdir = os.path.join(dest_dir_path, entry)
             
             print("recursive call utilized")
-            # Recursive call to process the subdirectory
+            print(f"Recursing into: {source_path} -> {dest_subdir}")
             generate_pages_recursive(source_path, template_path, dest_subdir, basepath)
             
 def main():
-    public_dir = "public"
-    output_file = os.path.join(public_dir, "index.html")
+    public_dir = "docs"
     content_file = 'content'
     template_file = "template.html"
     
-    # Get the basepath from command line arguments or default to "/"
-    basepath = sys.argv[1] if len(sys.argv) > 1 else "/"
+    
     
     # Use the actual paths you need for your project
-    path_to_victory("static", "public")
+    path_to_victory("static", public_dir)
     print("Static files copied successfully!")
     
     #generating Page
     generate_pages_recursive(content_file, template_file, public_dir, basepath)
-    print(f"Replacing href/src with basepath: {basepath}")
-    print("page generated in public folder")
+    #print(f"Replacing href/src with basepath: {basepath}")
+    print("page generated in docs folder")
 
     
-    print("All pages generated in public folder")
+    print("All pages generated in docs folder")
 
 if __name__ == "__main__":
-    
+    # Get the basepath from command line arguments or default to "/"
+    basepath = sys.argv[1] if len(sys.argv) > 1 else "/"
     main()
